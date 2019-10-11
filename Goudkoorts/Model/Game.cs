@@ -105,6 +105,36 @@ namespace Goudkoorts.Model
             cRangeSwitch.LeftTrack = ccFirst;
             ccFirst.NextTrack = cRangeSwitch;
 
+            // Track between cRange and abccRange
+            Track caFirst = new Track();
+            cRangeSwitch.UpTrack = caFirst;
+            caFirst.PreviouseTrack = cRangeSwitch;
+            Track caSecond = new Track();
+            caFirst.NextTrack = caSecond;
+            caSecond.PreviouseTrack = caFirst;
+            TrackSwitch abccRange = new TrackSwitch("Q");
+            TrackSwitches.Add(abccRange);
+            abccRange.DownTrack = caSecond;
+            caSecond.NextTrack = abccRange;
+
+            // Track between abc switch and abccRange
+            Track abcFirst = new Track();
+            abcSwitch.UpTrack = abcFirst;
+            abcFirst.PreviouseTrack = abcSwitch;
+            Track abcSecond = new Track();
+            abcFirst.NextTrack = abcSecond;
+            abcSecond.PreviouseTrack = abcFirst;
+            Track abcTirth = new Track();
+            abcSecond.NextTrack = abcTirth;
+            abcTirth.PreviouseTrack = abcSecond;
+            Track abcFourth = new Track();
+            abcTirth.NextTrack = abcFourth;
+            abcFourth.PreviouseTrack = abcTirth;
+            Track abcFith = new Track();
+            abcFourth.NextTrack = abcFith;
+            abcFith.PreviouseTrack = abcFourth;
+            abcFith.NextTrack = abccRange;
+            abccRange.UpTrack = abccRange;
         }
     }
 }
