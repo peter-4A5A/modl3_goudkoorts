@@ -9,5 +9,6 @@ namespace Goudkoorts.Model
     class Cart
     {
         public bool IsFull { get; set; }
+        public Track Track { get; set; }
     }
 }

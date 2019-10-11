@@ -9,6 +9,7 @@ namespace Goudkoorts.Model
     class Warehouse : Field
     {
         public override string FieldCharacter { get; set; }
+        public Track NextTrack { get; set; }
 
         public Warehouse(string letter)
         {

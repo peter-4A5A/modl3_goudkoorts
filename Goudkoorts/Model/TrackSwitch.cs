@@ -19,6 +19,13 @@ namespace Goudkoorts.Model
 
         public override string FieldCharacter { get; set; }
 
+        public string ListenToCharacter;
+
+        public TrackSwitch(string character)
+        {
+            ListenToCharacter = character;
+        }
+
         public void Switch()
         {
             // We draaien met de klok mee
