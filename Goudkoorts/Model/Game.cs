@@ -52,10 +52,59 @@ namespace Goudkoorts.Model
             TrackSwitches.Add(abSwitch);
             abSwitch.UpTrack = aThirthTrack;
             abSwitch.DownTrack = bThirthTrack;
-            Track trackBetwwenSwitches = new Track();
-            abSwitch.NextTrack = trackBetwwenSwitches;
-            trackBetwwenSwitches.PreviouseTrack = abSwitch;
+            Track trackBetweenSwitches = new Track();
+            abSwitch.NextTrack = trackBetweenSwitches;
+            trackBetweenSwitches.PreviouseTrack = abSwitch;
             // Making the switch between A and B
+
+            // Making track from warehouse C to first switch
+            Track cFirstTrack = new Track();
+            whC.NextTrack = cFirstTrack;
+            Track cSecondTrack = new Track();
+            cFirstTrack.NextTrack = cSecondTrack;
+            cSecondTrack.PreviouseTrack = cFirstTrack;
+            Track cThirthTrack = new Track();
+            cThirthTrack.PreviouseTrack = cSecondTrack;
+            Track cFourthTrack = new Track();
+            cThirthTrack.NextTrack = cFourthTrack;
+            cFourthTrack.PreviouseTrack = cThirthTrack;
+            Track cFifthTrack = new Track();
+            cFourthTrack.NextTrack = cFifthTrack;
+            cFifthTrack.PreviouseTrack = cFourthTrack;
+            Track cSixthTrack = new Track();
+            cFifthTrack.NextTrack = cSixthTrack;
+            cSixthTrack.PreviouseTrack = cFifthTrack;
+
+            TrackSwitch cSwitch = new TrackSwitch("E");
+            TrackSwitches.Add(cSwitch);
+            cSixthTrack.NextTrack = cSwitch;
+            cSwitch.DownTrack = cSixthTrack;
+
+            // Making track ab switch and C switch
+            TrackSwitch abcSwitch = new TrackSwitch("R");
+            TrackSwitches.Add(abcSwitch);
+            trackBetweenSwitches.NextTrack = abcSwitch;
+            abcSwitch.LeftTrack = trackBetweenSwitches;
+
+            Track cbOne = new Track();
+            cbOne.PreviouseTrack = cSwitch;
+            cSwitch.UpTrack = cbOne;
+
+            Track cbTwo = new Track();
+            cbOne.NextTrack = cbTwo;
+            cbTwo.PreviouseTrack = cbOne;
+            cbTwo.NextTrack = abcSwitch;
+            abcSwitch.DownTrack = cbTwo;
+
+            // Track between cSwitch and cRange
+            Track ccFirst = new Track();
+            ccFirst.PreviouseTrack = cSwitch;
+            cSwitch.RightTrack = ccFirst;
+            TrackSwitch cRangeSwitch = new TrackSwitch("T");
+            TrackSwitches.Add(cRangeSwitch);
+            cRangeSwitch.LeftTrack = ccFirst;
+            ccFirst.NextTrack = cRangeSwitch;
+
         }
     }
 }
