@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class Field
+    public class Field
     {
         public virtual string FieldCharacter { get; set; }
     }

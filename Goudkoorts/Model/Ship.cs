@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class Ship
+    public class Ship
     {
         public int NumberOfDumps { get; set; }
     }
