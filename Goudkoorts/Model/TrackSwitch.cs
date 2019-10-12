@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class TrackSwitch : Track
+    public class TrackSwitch : Track
     {
         public Track UpTrack { get; set; }
         public Track DownTrack { get; set; }
@@ -24,6 +24,7 @@ namespace Goudkoorts.Model
         public TrackSwitch(string character)
         {
             ListenToCharacter = character;
+            FieldCharacter = "S";
         }
 
         public void Switch()

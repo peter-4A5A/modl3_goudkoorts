@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class Game
+    public class Game
     {
         public int Score { get; private set; }
         public List<List<Field>> Map;
@@ -19,9 +19,28 @@ namespace Goudkoorts.Model
         public TrackDock TrackDock { get; set; }
 
         public TrackEnd TrackEnd { get; set; }
+        public bool IsPlaying { get; set; }
         public Game()
         {
+            WareHouses = new List<Warehouse>();
+            TrackSwitches = new List<TrackSwitch>();
+            Carts = new List<Cart>();
+            TrackYards = new List<TrackYard>();
 
+            Map = new List<List<Field>>();
+            int index = 0;
+            while (index < 12)
+            {
+                Map.Add(new List<Field>());
+                int secondIndex = 0;
+                var currentField = Map[index];
+                while(secondIndex < 12)
+                {
+                    currentField.Add(null);
+                    secondIndex++;
+                }
+                index++;
+            }
         }
 
         public void SetupMap()
@@ -37,6 +56,7 @@ namespace Goudkoorts.Model
             Track aFirst = new Track();
             Track aSecondTrack = new Track();
             Track aThirthTrack = new Track();
+            aThirthTrack.IsHorizontal = false;
             aFirst.NextTrack = aSecondTrack;
             aSecondTrack.PreviouseTrack = aFirst;
             aSecondTrack.NextTrack = aThirthTrack;
@@ -46,6 +66,7 @@ namespace Goudkoorts.Model
             Track bFirst = new Track();
             Track bSecondTrack = new Track();
             Track bThirthTrack = new Track();
+            bThirthTrack.IsHorizontal = false;
             bFirst.NextTrack = bSecondTrack;
             bSecondTrack.PreviouseTrack = bFirst;
             bSecondTrack.NextTrack = bThirthTrack;
@@ -59,7 +80,7 @@ namespace Goudkoorts.Model
             abSwitch.UpTrack = aThirthTrack;
             abSwitch.DownTrack = bThirthTrack;
             Track trackBetweenSwitches = new Track();
-            abSwitch.NextTrack = trackBetweenSwitches;
+            abSwitch.LeftTrack = trackBetweenSwitches;
             trackBetweenSwitches.PreviouseTrack = abSwitch;
             // Making the switch between A and B
 
@@ -78,6 +99,7 @@ namespace Goudkoorts.Model
             cFourthTrack.NextTrack = cFifthTrack;
             cFifthTrack.PreviouseTrack = cFourthTrack;
             Track cSixthTrack = new Track();
+            cSixthTrack.IsHorizontal = false;
             cFifthTrack.NextTrack = cSixthTrack;
             cSixthTrack.PreviouseTrack = cFifthTrack;
 
@@ -97,6 +119,7 @@ namespace Goudkoorts.Model
             cSwitch.UpTrack = cbOne;
 
             Track cbTwo = new Track();
+            cbTwo.IsHorizontal = false;
             cbOne.NextTrack = cbTwo;
             cbTwo.PreviouseTrack = cbOne;
             cbTwo.NextTrack = abcSwitch;
@@ -125,6 +148,7 @@ namespace Goudkoorts.Model
 
             // Track between abc switch and abccRange
             Track abcFirst = new Track();
+            abcFirst.IsHorizontal = false;
             abcSwitch.UpTrack = abcFirst;
             abcFirst.PreviouseTrack = abcSwitch;
             Track abcSecond = new Track();
@@ -140,22 +164,26 @@ namespace Goudkoorts.Model
             abcFourth.NextTrack = abcFith;
             abcFith.PreviouseTrack = abcFourth;
             abcFith.NextTrack = abccRange;
-            abccRange.UpTrack = abccRange;
+            abccRange.UpTrack = abcFith;
 
             // Track between abbc range k dock
             Track kFirst = new Track();
-            abcSwitch.RightTrack = kFirst;
+            abccRange.RightTrack = kFirst;
             kFirst.PreviouseTrack = abcSwitch;
             Track kSecond = new Track();
+            kSecond.IsHorizontal = false;
             kFirst.NextTrack = kSecond;
             kSecond.PreviouseTrack = kFirst;
             Track kTirth = new Track();
+            kTirth.IsHorizontal = false;
             kSecond.NextTrack = kTirth;
             kTirth.PreviouseTrack = kSecond;
             Track kFourth = new Track();
+            kFourth.IsHorizontal = false;
             kTirth.NextTrack = kFourth;
             kFourth.PreviouseTrack = kTirth;
             Track kFith = new Track();
+            kFith.IsHorizontal = false;
             kFourth.NextTrack = kFith;
             kFith.PreviouseTrack = kFourth;
             Track kSixth = new Track();
@@ -195,7 +223,8 @@ namespace Goudkoorts.Model
 
             // Track between ccRange switch and before the range
             Track cRFirst = new Track();
-            cRangeSwitch.RightTrack = cRFirst;
+            cRFirst.IsHorizontal = false;
+            cRangeSwitch.DownTrack = cRFirst;
             cRFirst.PreviouseTrack = cRangeSwitch;
             Track cRSecond = new Track();
             cRFirst.NextTrack = cRSecond;
@@ -204,9 +233,11 @@ namespace Goudkoorts.Model
             cRSecond.NextTrack = cRTirth;
             cRTirth.PreviouseTrack = cRSecond;
             Track cRFourth = new Track();
+            cRFourth.IsHorizontal = false;
             cRTirth.NextTrack = cRFourth;
             cRFourth.PreviouseTrack = cRTirth;
             Track cRFifth = new Track();
+            cRFifth.IsHorizontal = false;
             cRFourth.NextTrack = cRFifth;
             cRFifth.PreviouseTrack = cRFourth;
             Track cRSixth = new Track();
@@ -250,6 +281,80 @@ namespace Goudkoorts.Model
             TrackYards.Add(ySixth);
             TrackYards.Add(ySeventh);
             TrackYards.Add(yEigth);
+
+            Map[0][1] = yEigth;
+            Map[0][2] = ySeventh;
+            Map[0][3] = ySixth;
+            Map[0][4] = yFifth;
+            Map[0][5] = yFourth;
+            Map[0][6] = yTirth;
+            Map[0][7] = ySecond;
+            Map[0][8] = yFirst;
+            Map[0][9] = cRSeventh;
+            Map[0][10] = cRSixth;
+            Map[0][11] = cRFifth;
+
+            Map[1][0] = whC;
+            Map[1][1] = cFirstTrack;
+            Map[1][2] = cSecondTrack;
+            Map[1][3] = cThirthTrack;
+            Map[1][4] = cFourthTrack;
+            Map[1][5] = cFifthTrack;
+            Map[1][6] = cSixthTrack;
+            Map[1][7] = null;
+
+            Map[1][11] = cRFourth;
+            Map[1][10] = cRTirth;
+            Map[1][9] = cRSecond;
+            Map[1][8] = cRFirst;
+
+            Map[2][8] = cRangeSwitch;
+            Map[2][7] = ccFirst;
+            Map[2][6] = cSwitch;
+
+            Map[3][0] = whB;
+            Map[3][1] = bFirst;
+            Map[3][2] = bSecondTrack;
+            Map[3][3] = bThirthTrack;
+
+            Map[3][5] = cbTwo;
+            Map[3][6] = cbOne;
+            Map[3][8] = caFirst;
+            Map[3][9] = caSecond;
+
+            Map[4][9] = abccRange;
+            Map[4][10] = kFirst;
+            Map[4][11] = kSecond;
+            Map[4][5] = abcSwitch;
+            Map[4][4] = trackBetweenSwitches;
+            Map[4][3] = abSwitch;
+
+            Map[5][0] = whA;
+            Map[5][1] = aFirst;
+            Map[5][2] = aSecondTrack;
+            Map[5][3] = aThirthTrack;
+            Map[5][5] = abcFirst;
+            Map[5][6] = abcSecond;
+            Map[5][7] = abcTirth;
+            Map[5][8] = abcFourth;
+            Map[5][9] = abcFith;
+            Map[5][11] = kTirth;
+
+            Map[6][11] = kFourth;
+
+            Map[7][11] = kFith;
+            Map[7][10] = kSixth;
+            Map[7][9] = TrackDock;
+            Map[7][8] = EightTrack;
+            Map[7][7] = ninthTrack;
+            Map[7][6] = tenthTrack;
+            Map[7][5] = eleventhTrack;
+            Map[7][4] = twelfthTack;
+            Map[7][3] = tirtheenthTrach;
+            Map[7][2] = fourtheenthTrack;
+            Map[7][1] = fiftheenthTrack;
+            Map[7][0] = TrackEnd;
+            IsPlaying = true;
         }
     }
 }

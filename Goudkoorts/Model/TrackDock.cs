@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class TrackDock : Track
+    public class TrackDock : Track
     {
         public Ship Ship { get; set; }
         public override string FieldCharacter { get; set; }

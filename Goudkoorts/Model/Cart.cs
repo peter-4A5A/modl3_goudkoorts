@@ -6,9 +6,23 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class Cart
+    public class Cart
     {
         public bool IsFull { get; set; }
-        public Track Track { get; set; }
+        private Track _track;
+        public Track Track {
+            get {
+                return _track;
+            }
+            set {
+                _track = value;
+                _track.FieldCharacter = "C";
+            }
+        }
+
+        public Cart()
+        {
+
+        }
     }
 }

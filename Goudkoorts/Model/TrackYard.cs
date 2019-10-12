@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    class TrackYard : Track
+    public class TrackYard : Track
     {
         public Ship Ship { get; set; }
+
+        public TrackYard()
+        {
+            FieldCharacter = "_";
+        }
     }
 }

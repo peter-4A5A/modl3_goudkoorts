@@ -13,7 +13,7 @@
   <Class Name="Goudkoorts.Model.Game">
     <Position X="0.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAABBAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BBAAAAAAABBAAAgAAAAQCAAAAAQAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Model\Game.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -44,7 +44,7 @@
   <Class Name="Goudkoorts.Model.TrackSwitch" Collapsed="true">
     <Position X="9.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAIAKCAIAAAgAAAAAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAIAKCAIAAAgAAAAAACAAAAAAACA=</HashCode>
       <FileName>Model\TrackSwitch.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,14 +61,14 @@
   <Class Name="Goudkoorts.Model.Warehouse">
     <Position X="9.5" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Warehouse.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Goudkoorts.Model.Field">
     <Position X="6.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAEAAAEAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Field.cs</FileName>
     </TypeIdentifier>
   </Class>
