@@ -10,6 +10,7 @@ namespace Goudkoorts.Model
     {
         public bool IsFull { get; set; }
         private Track _track;
+        public bool DrivesInverted { get; set; }
         public Track Track {
             get {
                 return _track;
@@ -22,7 +23,7 @@ namespace Goudkoorts.Model
 
         public Cart()
         {
-
+            DrivesInverted = false;
         }
     }
 }

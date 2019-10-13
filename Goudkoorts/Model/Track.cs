@@ -10,9 +10,9 @@ namespace Goudkoorts.Model
     {
         public virtual Track PreviouseTrack { get; set; }
         public virtual Track NextTrack { get; set; }
+        public virtual string DefaultFieldCharacter { get; set; }
 
         private Cart _cart;
-        private int _id;
         public Cart Cart {
             get {
                 return _cart;
@@ -25,7 +25,7 @@ namespace Goudkoorts.Model
                 }
                 else
                 {
-                    IsHorizontal = IsHorizontal;
+                    FieldCharacter = DefaultFieldCharacter;
                 }
             }
         }
@@ -55,6 +55,7 @@ namespace Goudkoorts.Model
         public Track()
         {
             FieldCharacter = "-";
+            DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
         }
 

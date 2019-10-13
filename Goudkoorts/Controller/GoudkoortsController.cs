@@ -37,6 +37,13 @@ namespace Goudkoorts.Controller
 
         public void HandleKeyPress(string key)
         {
+            Random random = new Random();
+            int randomInt = random.Next(1, 10);
+            if (randomInt == 3)
+            {
+                // Need to spawn a cart
+                Game.SpawnCart();
+            }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;
             trackSwitches = trackSwitches.Where(ts => ts.ListenToCharacter.ToLower().Equals(key)).ToList();

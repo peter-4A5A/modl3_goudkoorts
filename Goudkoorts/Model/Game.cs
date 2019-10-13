@@ -43,6 +43,22 @@ namespace Goudkoorts.Model
             }
         }
 
+        public void SpawnCart()
+        {
+            Random random = new Random();
+            int selectedWarehouseIndex = random.Next(0, WareHouses.Count - 1);
+            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
+            if (nextWarehouseTrack.Cart != null)
+            {
+                return;
+            }
+            Cart cart = new Cart();
+            cart.Track = nextWarehouseTrack;
+            nextWarehouseTrack.Cart = cart;
+            Carts.Add(cart);
+        }
+
         public void SetupMap()
         {
             Warehouse whA = new Warehouse("A");
