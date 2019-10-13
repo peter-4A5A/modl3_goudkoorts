@@ -12,6 +12,7 @@ namespace Goudkoorts.Model
         public virtual Track NextTrack { get; set; }
 
         private Cart _cart;
+        private int _id;
         public Cart Cart {
             get {
                 return _cart;
@@ -48,6 +49,8 @@ namespace Goudkoorts.Model
                 }
             }
         }
+
+        public int Id { get; set; }
 
         public Track()
         {

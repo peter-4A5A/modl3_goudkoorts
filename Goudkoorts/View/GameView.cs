@@ -17,6 +17,7 @@ namespace Goudkoorts.View
 
         public void Render()
         {
+            Console.Clear();
             var gameMap = _game.Map;
             int index = gameMap.Count - 1;
             while(index >= 0)
