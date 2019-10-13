@@ -64,10 +64,6 @@ namespace Goudkoorts.Model
 
         public virtual bool CanEnterField(Track track)
         {
-            if (Cart != null)
-            {
-                return false;
-            }
             return true;
         }
 

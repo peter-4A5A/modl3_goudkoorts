@@ -38,11 +38,11 @@ namespace Goudkoorts.Model
             IsSwitch = true;
         }
 
-        public override bool CanEnterField(Track currentField)
+        public override bool CanEnterField(Track nextField)
         {
             if (!IsInverted)
             {
-                if (PreviouseTrack != currentField)
+                if (PreviouseTrack != nextField)
                 {
                     return false;
                 }
