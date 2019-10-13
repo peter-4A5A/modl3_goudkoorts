@@ -18,6 +18,7 @@ namespace Goudkoorts.Model
         public override Track PreviouseTrack { get; set; }
 
         public override string FieldCharacter { get; set; }
+        private string _defaultFieldCharacter;
 
         public string ListenToCharacter { get; set; }
 
@@ -25,36 +26,26 @@ namespace Goudkoorts.Model
 
         private int nextIndex = 0;
 
+        public bool IsInverted { get; set; }
+
         public TrackSwitch(string character)
         {
+            IsInverted = false;
+            //┌ ┐
+            //└ ┘
             ListenToCharacter = character;
             FieldCharacter = "S";
-        }
-        private void SetupTrackList()
-        {
-            Tracks = new List<Track>();
-            if (UpTrack != null)
-            {
-                Tracks.Add(UpTrack);
-            }
-            if (RightTrack != null)
-            {
-                Tracks.Add(RightTrack);
-            }
-            if (DownTrack != null)
-            {
-                Tracks.Add(DownTrack);
-            } 
-            if (LeftTrack != null)
-            {
-                Tracks.Add(LeftTrack);
-            }
+            _defaultFieldCharacter = FieldCharacter;
         }
         public void Switch()
         {
             if (Tracks == null)
             {
                 SetupTrackList();
+                if (IsInverted)
+                {
+                    nextIndex = Tracks.Count - 2;
+                }
             }
             if (Cart != null)
             {
@@ -62,17 +53,98 @@ namespace Goudkoorts.Model
                 return;
             }
             // We draaien met de klok mee
-            if (NextTrack == null && PreviouseTrack == null)
+            // Onder en boven mogen niet samen
+            if (!IsInverted)
             {
-                PreviouseTrack = Tracks[0];
-                NextTrack = Tracks[1];
-                nextIndex = 1;
+                PreviouseTrack = Tracks[nextIndex];
+                nextIndex++;
+                NextTrack = Tracks[nextIndex];
+                nextIndex %= 2;
+                HandleFieldCharacter();
                 return;
             }
-            PreviouseTrack = Tracks[nextIndex];
-            nextIndex++;
-            nextIndex = nextIndex % 2;
-            NextTrack = Tracks[nextIndex];
+            if (IsInverted)
+            {
+                PreviouseTrack = Tracks[2];
+                NextTrack = Tracks[nextIndex];
+                nextIndex--;
+                if (nextIndex < 0)
+                {
+                    nextIndex = Tracks.Count - 2;
+                }
+                HandleFieldCharacter();
+                return;
+            }
+        }
+
+        private void HandleFieldCharacter()
+        {
+            if (PreviouseTrack == UpTrack && NextTrack == RightTrack)
+            {
+                FieldCharacter = "└";
+                return;
+            }
+            else if (NextTrack == UpTrack && PreviouseTrack == RightTrack)
+            {
+                FieldCharacter = "└";
+                return;
+            }
+            if (PreviouseTrack == RightTrack && NextTrack == DownTrack)
+            {
+                FieldCharacter = "┌";
+                return;
+            }
+            else if (NextTrack == RightTrack && PreviouseTrack == DownTrack)
+            {
+                FieldCharacter = "┌";
+                return;
+            }
+            if (PreviouseTrack == DownTrack && NextTrack == LeftTrack)
+            {
+                FieldCharacter = "┐";
+                return;
+            }
+            else if (NextTrack == DownTrack && PreviouseTrack == LeftTrack)
+            {
+                FieldCharacter = "┐";
+                return;
+            }
+            if (PreviouseTrack == LeftTrack && NextTrack == UpTrack)
+            {
+                FieldCharacter = "┘";
+                return;
+            }
+            else if (NextTrack == LeftTrack && PreviouseTrack == UpTrack)
+            {
+                FieldCharacter = "┘";
+                return;
+            }
+        }
+
+        private void SetupTrackList()
+        {
+            Random random = new Random();
+            Tracks = new List<Track>();
+            if (UpTrack != null)
+            {
+                UpTrack.Id = random.Next(1, 5000);
+                Tracks.Add(UpTrack);
+            }
+            if (RightTrack != null)
+            {
+                RightTrack.Id = random.Next(1, 5000);
+                Tracks.Add(RightTrack);
+            }
+            if (DownTrack != null)
+            {
+                DownTrack.Id = random.Next(1, 5000);
+                Tracks.Add(DownTrack);
+            }
+            if (LeftTrack != null)
+            {
+                LeftTrack.Id = random.Next(1, 5000);
+                Tracks.Add(LeftTrack);
+            }
         }
     }
 }

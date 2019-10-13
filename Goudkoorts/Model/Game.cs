@@ -80,7 +80,7 @@ namespace Goudkoorts.Model
             abSwitch.UpTrack = aThirthTrack;
             abSwitch.DownTrack = bThirthTrack;
             Track trackBetweenSwitches = new Track();
-            abSwitch.LeftTrack = trackBetweenSwitches;
+            abSwitch.RightTrack = trackBetweenSwitches;
             trackBetweenSwitches.PreviouseTrack = abSwitch;
             // Making the switch between A and B
 
@@ -272,6 +272,9 @@ namespace Goudkoorts.Model
             TrackYard yEigth = new TrackYard();
             ySeventh.NextTrack = yEigth;
             yEigth.PreviouseTrack = ySeventh;
+
+            cRangeSwitch.IsInverted = true;
+            abcSwitch.IsInverted = true;
 
             TrackYards.Add(yFirst);
             TrackYards.Add(ySecond);
