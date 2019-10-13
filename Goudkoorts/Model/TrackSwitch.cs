@@ -49,7 +49,7 @@ namespace Goudkoorts.Model
             }
             if (Cart != null)
             {
-                // Can not switch with a cart on us
+                // Switch can not used when there is a cart
                 return;
             }
             // We draaien met de klok mee
