@@ -19,17 +19,60 @@ namespace Goudkoorts.Model
 
         public override string FieldCharacter { get; set; }
 
-        public string ListenToCharacter;
+        public string ListenToCharacter { get; set; }
+
+        public List<Track> Tracks { get; set; }
+
+        private int nextIndex = 0;
 
         public TrackSwitch(string character)
         {
             ListenToCharacter = character;
             FieldCharacter = "S";
         }
-
+        private void SetupTrackList()
+        {
+            Tracks = new List<Track>();
+            if (UpTrack != null)
+            {
+                Tracks.Add(UpTrack);
+            }
+            if (RightTrack != null)
+            {
+                Tracks.Add(RightTrack);
+            }
+            if (DownTrack != null)
+            {
+                Tracks.Add(DownTrack);
+            } 
+            if (LeftTrack != null)
+            {
+                Tracks.Add(LeftTrack);
+            }
+        }
         public void Switch()
         {
+            if (Tracks == null)
+            {
+                SetupTrackList();
+            }
+            if (Cart != null)
+            {
+                // Can not switch with a cart on us
+                return;
+            }
             // We draaien met de klok mee
+            if (NextTrack == null && PreviouseTrack == null)
+            {
+                PreviouseTrack = Tracks[0];
+                NextTrack = Tracks[1];
+                nextIndex = 1;
+                return;
+            }
+            PreviouseTrack = Tracks[nextIndex];
+            nextIndex++;
+            nextIndex = nextIndex % 2;
+            NextTrack = Tracks[nextIndex];
         }
     }
 }

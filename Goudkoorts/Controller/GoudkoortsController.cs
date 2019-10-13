@@ -30,7 +30,20 @@ namespace Goudkoorts.Controller
             while (Game.IsPlaying)
             {
                 gameView.Render();
-                Console.ReadLine();
+                char key = Console.ReadKey().KeyChar;
+                HandleKeyPress(key.ToString());
+            }
+        }
+
+        public void HandleKeyPress(string key)
+        {
+            key = key.ToLower();
+            List<TrackSwitch> trackSwitches = Game.TrackSwitches;
+            trackSwitches = trackSwitches.Where(ts => ts.ListenToCharacter.ToLower().Equals(key)).ToList();
+
+            foreach (var item in trackSwitches)
+            {
+                item.Switch();
             }
         }
     }
