@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Goudkoorts.Controller
 {
     public class GoudkoortsController
     {
+        private Timer aTimer;
+
         public Game Game { get; set; }
 
         public GoudkoortsController()
@@ -21,6 +24,17 @@ namespace Goudkoorts.Controller
         public void Start()
         {
             // Start view
+            aTimer = new System.Timers.Timer();
+            aTimer.Interval = 2000;
+
+            // Hook up the Elapsed event for the timer. 
+            aTimer.Elapsed += new ElapsedEventHandler(Game.MoveCarts);
+
+            // Have the timer fire repeated events (true is the default)
+            aTimer.AutoReset = true;
+
+            // Start the timer
+            aTimer.Enabled = true;
             PlayGame();
         }
 
@@ -28,12 +42,12 @@ namespace Goudkoorts.Controller
         {
             Game.SpawnCart();
             GameView gameView = new GameView(Game);
+            Game.Start();
             while (Game.IsPlaying)
             {
                 gameView.Render();
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
-                Game.MoveCarts();
             }
         }
 

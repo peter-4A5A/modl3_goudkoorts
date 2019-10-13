@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Goudkoorts.Model
 {
@@ -10,6 +11,7 @@ namespace Goudkoorts.Model
     {
         public int Score { get; private set; }
         public List<List<Field>> Map;
+
         public List<TrackSwitch> TrackSwitches { get; set; }
         public List<Warehouse> WareHouses { get; set; }
         public List<Cart> Carts { get; set; }
@@ -59,6 +61,14 @@ namespace Goudkoorts.Model
             cart.Track = nextWarehouseTrack;
             nextWarehouseTrack.Cart = cart;
             Carts.Add(cart);
+        }
+
+        public void Start()
+        {
+
+
+            Console.WriteLine("Press the Enter key to exit the program at any time... ");
+            Console.ReadLine();
         }
 
         public void MoveCarts()
