@@ -302,6 +302,7 @@ namespace Goudkoorts.Model
 
             cRangeSwitch.IsInverted = true;
             abcSwitch.IsInverted = true;
+            abccRange.IsInverted = false;
 
             TrackYards.Add(yFirst);
             TrackYards.Add(ySecond);

@@ -13,6 +13,7 @@ namespace Goudkoorts.Model
         public TrackDock()
         {
             FieldCharacter = "k";
+            DefaultFieldCharacter = FieldCharacter;
         }
     }
 }

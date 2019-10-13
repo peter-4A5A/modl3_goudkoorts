@@ -37,6 +37,18 @@ namespace Goudkoorts.Model
             FieldCharacter = "S";
             IsSwitch = true;
         }
+
+        public override bool CanEnterField(Track currentField)
+        {
+            if (!IsInverted)
+            {
+                if (PreviouseTrack != currentField)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public void Switch()
         {
             if (Tracks == null)
@@ -57,9 +69,13 @@ namespace Goudkoorts.Model
             if (!IsInverted)
             {
                 PreviouseTrack = Tracks[nextIndex];
+                
+                NextTrack = Tracks[1];
                 nextIndex++;
-                NextTrack = Tracks[nextIndex];
-                nextIndex %= 2;
+                if (nextIndex > Tracks.Count - 1)
+                {
+                    nextIndex = 0;
+                }
                 HandleFieldCharacter();
                 return;
             }

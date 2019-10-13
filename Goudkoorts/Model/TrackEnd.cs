@@ -12,6 +12,7 @@ namespace Goudkoorts.Model
         public TrackEnd()
         {
             FieldCharacter = "x";
+            DefaultFieldCharacter = FieldCharacter;
         }
     }
 }

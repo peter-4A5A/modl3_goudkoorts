@@ -34,7 +34,17 @@ namespace Goudkoorts.Model
         public void Move()
         {
             bool nextInverted = AreWeGoingInverted();
-            if (!DrivesInverted)
+            TrackSwitch trackSwitch = null;
+            if (Track.IsSwitch)
+            {
+                trackSwitch = (TrackSwitch)Track;
+                DrivesInverted = trackSwitch.IsInverted;
+            }
+            //if (!Track.CanEnterField(Track))
+            //{
+            //    return;
+            //}
+            if (!DrivesInverted || DrivesInverted && Track.IsSwitch)
             {
                 // Just go to the next Field
                 Track nextTrack = Track.NextTrack;
