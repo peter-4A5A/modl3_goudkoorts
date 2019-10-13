@@ -18,7 +18,7 @@ namespace Goudkoorts.Model
         public override Track PreviouseTrack { get; set; }
 
         public override string FieldCharacter { get; set; }
-        private string _defaultFieldCharacter;
+
 
         public string ListenToCharacter { get; set; }
 
@@ -35,7 +35,7 @@ namespace Goudkoorts.Model
             //└ ┘
             ListenToCharacter = character;
             FieldCharacter = "S";
-            _defaultFieldCharacter = FieldCharacter;
+            IsSwitch = true;
         }
         public void Switch()
         {
@@ -82,41 +82,49 @@ namespace Goudkoorts.Model
             if (PreviouseTrack == UpTrack && NextTrack == RightTrack)
             {
                 FieldCharacter = "└";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             else if (NextTrack == UpTrack && PreviouseTrack == RightTrack)
             {
                 FieldCharacter = "└";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             if (PreviouseTrack == RightTrack && NextTrack == DownTrack)
             {
                 FieldCharacter = "┌";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             else if (NextTrack == RightTrack && PreviouseTrack == DownTrack)
             {
                 FieldCharacter = "┌";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             if (PreviouseTrack == DownTrack && NextTrack == LeftTrack)
             {
                 FieldCharacter = "┐";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             else if (NextTrack == DownTrack && PreviouseTrack == LeftTrack)
             {
                 FieldCharacter = "┐";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             if (PreviouseTrack == LeftTrack && NextTrack == UpTrack)
             {
                 FieldCharacter = "┘";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
             else if (NextTrack == LeftTrack && PreviouseTrack == UpTrack)
             {
                 FieldCharacter = "┘";
+                DefaultFieldCharacter = FieldCharacter;
                 return;
             }
         }

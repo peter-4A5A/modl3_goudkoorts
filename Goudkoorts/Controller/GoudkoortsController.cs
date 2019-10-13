@@ -26,12 +26,14 @@ namespace Goudkoorts.Controller
 
         public void PlayGame()
         {
+            Game.SpawnCart();
             GameView gameView = new GameView(Game);
             while (Game.IsPlaying)
             {
                 gameView.Render();
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
+                Game.MoveCarts();
             }
         }
 
@@ -42,7 +44,7 @@ namespace Goudkoorts.Controller
             if (randomInt == 3)
             {
                 // Need to spawn a cart
-                Game.SpawnCart();
+                //Game.SpawnCart();
             }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;

@@ -45,18 +45,28 @@ namespace Goudkoorts.Model
 
         public void SpawnCart()
         {
-            Random random = new Random();
-            int selectedWarehouseIndex = random.Next(0, WareHouses.Count - 1);
-            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            //Random random = new Random();
+            //int selectedWarehouseIndex = random.Next(0, WareHouses.Count - 1);
+            //Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            //Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
+            //if (nextWarehouseTrack.Cart != null)
+            //{
+            //    return;
+            //}
+            Warehouse SelectedWareHouse = WareHouses[0];
             Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
-            if (nextWarehouseTrack.Cart != null)
-            {
-                return;
-            }
             Cart cart = new Cart();
             cart.Track = nextWarehouseTrack;
             nextWarehouseTrack.Cart = cart;
             Carts.Add(cart);
+        }
+
+        public void MoveCarts()
+        {
+            foreach (var item in Carts)
+            {
+                item.Move();
+            }
         }
 
         public void SetupMap()
@@ -98,6 +108,7 @@ namespace Goudkoorts.Model
             Track trackBetweenSwitches = new Track();
             abSwitch.RightTrack = trackBetweenSwitches;
             trackBetweenSwitches.PreviouseTrack = abSwitch;
+            aThirthTrack.NextTrack = abSwitch;
             // Making the switch between A and B
 
             // Making track from warehouse C to first switch
@@ -374,6 +385,11 @@ namespace Goudkoorts.Model
             Map[7][1] = fiftheenthTrack;
             Map[7][0] = TrackEnd;
             IsPlaying = true;
+
+            foreach (var item in TrackSwitches)
+            {
+                item.Switch();
+            }
         }
     }
 }
