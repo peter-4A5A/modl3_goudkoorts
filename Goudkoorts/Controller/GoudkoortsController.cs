@@ -43,6 +43,7 @@ namespace Goudkoorts.Controller
         {
             Game.MoveCarts();
             Game.SpawnCart();
+            Game.DeleteCartOnEndField();
             _gameView.Render();
         }
 

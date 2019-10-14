@@ -61,6 +61,16 @@ namespace Goudkoorts.Model
             Carts.Add(cart);
         }
 
+        public void DeleteCartOnEndField()
+        {
+            if (TrackEnd.Cart != null)
+            {
+                Cart cart = TrackEnd.Cart;
+                Carts.Remove(cart);
+                TrackEnd.Cart = null;
+            }
+        }
+
         public void Start()
         {
 
