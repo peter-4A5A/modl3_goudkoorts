@@ -26,7 +26,7 @@ namespace Goudkoorts.Controller
         {
             // Start view
             _timer = new System.Timers.Timer();
-            _timer.Interval = 2000;
+            _timer.Interval = 400;
 
             // Hook up the Elapsed event for the timer.
             _timer.Elapsed += HandleTimervalTimer;
@@ -43,8 +43,8 @@ namespace Goudkoorts.Controller
         {
             Game.MoveCarts();
             Game.SpawnCart();
-            Game.DeleteCartOnEndField();
             _gameView.Render();
+            Game.DeleteCartOnEndField();
         }
 
         public void PlayGame()
