@@ -13,6 +13,7 @@ namespace Goudkoorts.Model
         public TrackYard()
         {
             FieldCharacter = "_";
+            DefaultFieldCharacter = FieldCharacter;
         }
     }
 }

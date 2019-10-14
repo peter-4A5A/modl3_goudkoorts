@@ -12,7 +12,6 @@ namespace Goudkoorts.Model
         public virtual Track NextTrack { get; set; }
 
         private Cart _cart;
-        private int _id;
         public Cart Cart {
             get {
                 return _cart;
@@ -25,7 +24,7 @@ namespace Goudkoorts.Model
                 }
                 else
                 {
-                    IsHorizontal = IsHorizontal;
+                    FieldCharacter = DefaultFieldCharacter;
                 }
             }
         }
@@ -42,20 +41,30 @@ namespace Goudkoorts.Model
                 if (_isHorizontal)
                 {
                     FieldCharacter = "-";
+                    DefaultFieldCharacter = FieldCharacter;
                 }
                 else
                 {
                     FieldCharacter = "|";
+                    DefaultFieldCharacter = FieldCharacter;
                 }
             }
         }
 
         public int Id { get; set; }
+        public bool IsSwitch { get; set; }
 
         public Track()
         {
             FieldCharacter = "-";
+            DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
+            IsSwitch = false;
+        }
+
+        public virtual bool CanEnterField(Track track)
+        {
+            return true;
         }
 
     }

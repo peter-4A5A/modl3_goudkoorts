@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace Goudkoorts.Model
 {
@@ -10,6 +11,7 @@ namespace Goudkoorts.Model
     {
         public int Score { get; private set; }
         public List<List<Field>> Map;
+
         public List<TrackSwitch> TrackSwitches { get; set; }
         public List<Warehouse> WareHouses { get; set; }
         public List<Cart> Carts { get; set; }
@@ -40,6 +42,38 @@ namespace Goudkoorts.Model
                     secondIndex++;
                 }
                 index++;
+            }
+        }
+
+        public void SpawnCart()
+        {
+            Random random = new Random();
+            int selectedWarehouseIndex = random.Next(0, WareHouses.Count - 1);
+            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
+            if (nextWarehouseTrack.Cart != null)
+            {
+                return;
+            }
+            Cart cart = new Cart();
+            cart.Track = nextWarehouseTrack;
+            nextWarehouseTrack.Cart = cart;
+            Carts.Add(cart);
+        }
+
+        public void Start()
+        {
+
+
+            Console.WriteLine("Press the Enter key to exit the program at any time... ");
+            Console.ReadLine();
+        }
+
+        public void MoveCarts()
+        {
+            foreach (var item in Carts)
+            {
+                item.Move();
             }
         }
 
@@ -82,6 +116,7 @@ namespace Goudkoorts.Model
             Track trackBetweenSwitches = new Track();
             abSwitch.RightTrack = trackBetweenSwitches;
             trackBetweenSwitches.PreviouseTrack = abSwitch;
+            aThirthTrack.NextTrack = abSwitch;
             // Making the switch between A and B
 
             // Making track from warehouse C to first switch
@@ -275,6 +310,7 @@ namespace Goudkoorts.Model
 
             cRangeSwitch.IsInverted = true;
             abcSwitch.IsInverted = true;
+            abccRange.IsInverted = false;
 
             TrackYards.Add(yFirst);
             TrackYards.Add(ySecond);
@@ -358,6 +394,11 @@ namespace Goudkoorts.Model
             Map[7][1] = fiftheenthTrack;
             Map[7][0] = TrackEnd;
             IsPlaying = true;
+
+            foreach (var item in TrackSwitches)
+            {
+                item.Switch();
+            }
         }
     }
 }
