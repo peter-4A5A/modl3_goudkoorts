@@ -11,7 +11,8 @@ namespace Goudkoorts.Controller
 {
     public class GoudkoortsController
     {
-        private Timer aTimer;
+        private Timer _timer;
+        private GameView _gameView;
 
         public Game Game { get; set; }
 
@@ -24,31 +25,37 @@ namespace Goudkoorts.Controller
         public void Start()
         {
             // Start view
-            aTimer = new System.Timers.Timer();
-            aTimer.Interval = 2000;
+            _timer = new System.Timers.Timer();
+            _timer.Interval = 2000;
 
-            // Hook up the Elapsed event for the timer. 
-            aTimer.Elapsed += new ElapsedEventHandler(Game.MoveCarts);
+            // Hook up the Elapsed event for the timer.
+            _timer.Elapsed += HandleTimervalTimer;
 
             // Have the timer fire repeated events (true is the default)
-            aTimer.AutoReset = true;
+            _timer.AutoReset = true;
 
             // Start the timer
-            aTimer.Enabled = true;
+            _timer.Enabled = true;
             PlayGame();
+        }
+
+        public void HandleTimervalTimer(object source, ElapsedEventArgs e)
+        {
+            Game.MoveCarts();
+            Game.SpawnCart();
+            _gameView.Render();
         }
 
         public void PlayGame()
         {
-            Game.SpawnCart();
-            GameView gameView = new GameView(Game);
+            _gameView = new GameView(Game);
             Game.Start();
             while (Game.IsPlaying)
             {
-                gameView.Render();
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
             }
+            _timer.Enabled = false;
         }
 
         public void HandleKeyPress(string key)
@@ -58,7 +65,7 @@ namespace Goudkoorts.Controller
             if (randomInt == 3)
             {
                 // Need to spawn a cart
-                //Game.SpawnCart();
+                Game.SpawnCart();
             }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;

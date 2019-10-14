@@ -41,6 +41,10 @@ namespace Goudkoorts.Model
                 DrivesInverted = trackSwitch.IsInverted;
             }
             Track nextTrack = Track.NextTrack;
+            if (nextTrack == null)
+            {
+                return;
+            }
             if (!nextTrack.CanEnterField(Track))
             {
                 return;
