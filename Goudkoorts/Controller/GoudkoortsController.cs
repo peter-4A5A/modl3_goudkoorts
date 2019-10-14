@@ -35,7 +35,6 @@ namespace Goudkoorts.Controller
             _timer.AutoReset = true;
 
             // Start the timer
-            _timer.Enabled = true;
             PlayGame();
         }
 
@@ -49,7 +48,7 @@ namespace Goudkoorts.Controller
         public void PlayGame()
         {
             _gameView = new GameView(Game);
-            Game.Start();
+            _timer.Enabled = true;
             while (Game.IsPlaying)
             {
                 char key = Console.ReadKey().KeyChar;

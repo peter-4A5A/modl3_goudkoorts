@@ -61,17 +61,9 @@ namespace Goudkoorts.Model
             Carts.Add(cart);
         }
 
-        public void Start()
-        {
-
-
-            Console.WriteLine("Press the Enter key to exit the program at any time... ");
-            Console.ReadLine();
-        }
-
         public void MoveCarts()
         {
-            foreach (var item in Carts)
+            foreach (Cart item in Carts)
             {
                 item.Move();
             }
