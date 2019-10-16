@@ -49,7 +49,7 @@ namespace Goudkoorts.Model
         {
             Random random = new Random();
             int selectedWarehouseIndex = random.Next(0, WareHouses.Count);
-            Warehouse SelectedWareHouse = WareHouses[1];
+            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
             Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
             if (nextWarehouseTrack.Cart != null)
             {
