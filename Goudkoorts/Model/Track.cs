@@ -53,6 +53,7 @@ namespace Goudkoorts.Model
 
         public int Id { get; set; }
         public bool IsSwitch { get; set; }
+        public bool IsYard { get; set; }
 
         public Track()
         {
@@ -60,11 +61,24 @@ namespace Goudkoorts.Model
             DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
             IsSwitch = false;
+            IsYard = false;
         }
 
         public virtual bool CanEnterField(Track track)
         {
-            return true;
+            if (NextTrack == null)
+            {
+                return false;
+            }
+            if (NextTrack.Cart == null)
+            {
+                return true;
+            }
+            if (NextTrack.Cart != null && NextTrack.Cart.Track.NextTrack.Cart == null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

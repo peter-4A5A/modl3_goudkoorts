@@ -45,10 +45,19 @@ namespace Goudkoorts.Model
             {
                 return;
             }
-            if (!nextTrack.CanEnterField(Track))
+            if (nextTrack.IsYard)
+            {
+                TrackYard trackYard = (TrackYard)nextTrack;
+                if (!trackYard.CanEnterField(Track))
+                {
+                    return;
+                }
+            }
+            else if (!nextTrack.CanEnterField(Track))
             {
                 return;
             }
+
             if (!DrivesInverted || DrivesInverted && Track.IsSwitch)
             {
                 // Just go to the next Field

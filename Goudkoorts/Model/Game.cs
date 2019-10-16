@@ -48,8 +48,8 @@ namespace Goudkoorts.Model
         public void SpawnCart()
         {
             Random random = new Random();
-            int selectedWarehouseIndex = random.Next(0, WareHouses.Count - 1);
-            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            //int selectedWarehouseIndex = random.Next(0, WareHouses.Count);
+            Warehouse SelectedWareHouse = WareHouses[2];
             Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
             if (nextWarehouseTrack.Cart != null)
             {
@@ -117,7 +117,9 @@ namespace Goudkoorts.Model
             Track cSecondTrack = new Track();
             cFirstTrack.NextTrack = cSecondTrack;
             cSecondTrack.PreviouseTrack = cFirstTrack;
+            
             Track cThirthTrack = new Track();
+            cSecondTrack.NextTrack = cThirthTrack;
             cThirthTrack.PreviouseTrack = cSecondTrack;
             Track cFourthTrack = new Track();
             cThirthTrack.NextTrack = cFourthTrack;
@@ -333,6 +335,8 @@ namespace Goudkoorts.Model
             Map[1][5] = cFifthTrack;
             Map[1][6] = cSixthTrack;
             Map[1][7] = null;
+
+            cFourthTrack.Cart = new Cart() { Track = cFourthTrack };
 
             Map[1][11] = cRFourth;
             Map[1][10] = cRTirth;

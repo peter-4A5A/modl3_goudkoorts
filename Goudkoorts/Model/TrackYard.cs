@@ -14,6 +14,20 @@ namespace Goudkoorts.Model
         {
             FieldCharacter = "_";
             DefaultFieldCharacter = FieldCharacter;
+            IsYard = true;
+        }
+
+        public override bool CanEnterField(Track track)
+        {
+            if (track.NextTrack == null)
+            {
+                return false;
+            }
+            if (track.NextTrack.Cart != null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

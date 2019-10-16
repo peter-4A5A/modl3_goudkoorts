@@ -29,7 +29,7 @@ namespace Goudkoorts.Controller
             _timer.Interval = 2000;
 
             // Hook up the Elapsed event for the timer.
-            _timer.Elapsed += HandleTimervalTimer;
+            //_timer.Elapsed += HandleTimervalTimer;
 
             // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;
@@ -41,18 +41,20 @@ namespace Goudkoorts.Controller
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
             Game.MoveCarts();
-            Game.SpawnCart();
+            
             _gameView.Render();
         }
 
         public void PlayGame()
         {
+            Game.SpawnCart();
             _gameView = new GameView(Game);
             _timer.Enabled = true;
             while (Game.IsPlaying)
             {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
+                HandleTimervalTimer(null, null);
             }
             _timer.Enabled = false;
         }
@@ -64,7 +66,7 @@ namespace Goudkoorts.Controller
             if (randomInt == 3)
             {
                 // Need to spawn a cart
-                Game.SpawnCart();
+                //Game.SpawnCart();
             }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;
@@ -74,6 +76,7 @@ namespace Goudkoorts.Controller
             {
                 item.Switch();
             }
+            _gameView.Render();
         }
     }
 }
