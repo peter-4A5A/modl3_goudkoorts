@@ -11,7 +11,6 @@ namespace Goudkoorts.Model
         public bool IsFull { get; set; }
         private Track _track;
         public bool DrivesInverted { get; set; }
-        private Track _lastSwitch;
         public Track Track {
             get {
                 return _track;
@@ -28,7 +27,6 @@ namespace Goudkoorts.Model
         public Cart()
         {
             DrivesInverted = false;
-            _lastSwitch = null;
         }
 
         public void Move()

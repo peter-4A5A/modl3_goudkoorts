@@ -66,7 +66,7 @@ namespace Goudkoorts.Model
 
         public virtual bool CanEnterField(Track track)
         {
-            if (NextTrack == null)
+            if (track.NextTrack == null)
             {
                 return false;
             }
