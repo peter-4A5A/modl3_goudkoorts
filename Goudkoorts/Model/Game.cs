@@ -63,10 +63,21 @@ namespace Goudkoorts.Model
 
         public void MoveCarts()
         {
+            Cart removingCart = null;
             foreach (Cart item in Carts)
             {
                 item.Move();
+                if (item.Track.IsTrackEnd)
+                {
+                    removingCart = item.Track.Cart;
+                }
             }
+            if (removingCart == null)
+            {
+                return;
+            }
+            Carts.Remove(removingCart);
+            removingCart.Track.Cart = null;
         }
 
         public void SetupMap()

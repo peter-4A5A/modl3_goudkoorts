@@ -9,10 +9,12 @@ namespace Goudkoorts.Model
     public class TrackEnd : Track
     {
         public override string FieldCharacter { get; set; }
+
         public TrackEnd()
         {
             FieldCharacter = "x";
             DefaultFieldCharacter = FieldCharacter;
+            IsTrackEnd = true;
         }
 
         public override bool CanEnterField(Track track)

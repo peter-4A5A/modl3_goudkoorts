@@ -12,7 +12,7 @@ namespace Goudkoorts.Model
         public virtual Track NextTrack { get; set; }
 
         private Cart _cart;
-        public Cart Cart {
+        public virtual Cart Cart {
             get {
                 return _cart;
             }
@@ -54,6 +54,7 @@ namespace Goudkoorts.Model
         public int Id { get; set; }
         public bool IsSwitch { get; set; }
         public bool IsYard { get; set; }
+        public bool IsTrackEnd { get; set; }
 
         public Track()
         {
@@ -62,6 +63,7 @@ namespace Goudkoorts.Model
             IsHorizontal = true;
             IsSwitch = false;
             IsYard = false;
+            IsTrackEnd = false;
         }
 
         public virtual bool CanEnterField(Track track)
