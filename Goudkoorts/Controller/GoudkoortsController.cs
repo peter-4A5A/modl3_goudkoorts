@@ -35,13 +35,19 @@ namespace Goudkoorts.Controller
             _timer.AutoReset = true;
             _timer.Enabled = true;
             // Start the timer
-            Game.SpawnCart();
             PlayGame();
         }
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
-            //Game.MoveCarts();
+            Game.MoveCarts();
+            Random random = new Random();
+            int randomInt = random.Next(1, 6);
+            if (randomInt == 3)
+            {
+                // Need to spawn a cart
+                Game.SpawnCart();
+            }
             _gameView.Render();
             if (_timer.Interval > 200)
             {
@@ -77,13 +83,6 @@ namespace Goudkoorts.Controller
 
         public void HandleKeyPress(string key)
         {
-            Random random = new Random();
-            int randomInt = random.Next(1, 4);
-            if (randomInt == 3)
-            {
-                // Need to spawn a cart
-                //Game.SpawnCart();
-            }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;
             trackSwitches = trackSwitches.Where(ts => ts.ListenToCharacter.ToLower().Equals(key)).ToList();
