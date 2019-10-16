@@ -70,13 +70,28 @@ namespace Goudkoorts.Model
             {
                 return false;
             }
-            if (NextTrack.Cart == null)
+            if (track.NextTrack.Cart != null && track.NextTrack.Cart.DrivesInverted)
+            {
+                if (track.NextTrack.Cart == null)
+                {
+                    return true;
+                }
+            }
+            if (track.NextTrack.Cart == null)
             {
                 return true;
             }
             if (NextTrack.Cart != null && NextTrack.Cart.Track.NextTrack.Cart == null)
             {
                 return true;
+            }
+            if (track.NextTrack.Cart != null && !track.NextTrack.Cart.DrivesInverted)
+            {
+                throw new Exception("Cart hit other cart");
+            }
+            else if (track.PreviouseTrack.Cart != null && track.PreviouseTrack.Cart.DrivesInverted)
+            {
+                throw new Exception("Cart hit other cart");
             }
             return false;
         }

@@ -71,7 +71,7 @@ namespace Goudkoorts.Model
                 PreviouseTrack = Tracks[nextIndex];
                 
                 NextTrack = Tracks[1];
-                nextIndex++;
+                nextIndex += 2;
                 if (nextIndex > Tracks.Count - 1)
                 {
                     nextIndex = 0;

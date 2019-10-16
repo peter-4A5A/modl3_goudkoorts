@@ -40,7 +40,7 @@ namespace Goudkoorts.Controller
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
-            Game.MoveCarts();
+            //Game.MoveCarts();
             
             _gameView.Render();
         }
@@ -52,11 +52,21 @@ namespace Goudkoorts.Controller
             _timer.Enabled = true;
             while (Game.IsPlaying)
             {
-                char key = Console.ReadKey().KeyChar;
-                HandleKeyPress(key.ToString());
-                HandleTimervalTimer(null, null);
+                try
+                {
+                    char key = Console.ReadKey().KeyChar;
+                    HandleKeyPress(key.ToString());
+                    HandleTimervalTimer(null, null);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Game.IsPlaying = false;
+                }
+
             }
             _timer.Enabled = false;
+            Console.ReadKey();
         }
 
         public void HandleKeyPress(string key)
