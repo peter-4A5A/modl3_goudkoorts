@@ -66,7 +66,6 @@ namespace Goudkoorts.Controller
             {
                 try
                 {
-                    Game.MoveCarts();
                     char key = Console.ReadKey().KeyChar;
                     HandleKeyPress(key.ToString());
                     _gameView.Render();

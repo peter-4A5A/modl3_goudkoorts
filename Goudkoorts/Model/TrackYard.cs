@@ -17,13 +17,13 @@ namespace Goudkoorts.Model
             IsYard = true;
         }
 
-        public override bool CanEnterField(Track track)
+        public override bool CanEnterField(Track currentTrack)
         {
-            if (track.NextTrack == null)
+            if (currentTrack.NextTrack == null)
             {
                 return false;
             }
-            if (track.NextTrack.Cart != null)
+            if (currentTrack.NextTrack.Cart != null)
             {
                 return false;
             }

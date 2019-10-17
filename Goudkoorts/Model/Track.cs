@@ -66,32 +66,32 @@ namespace Goudkoorts.Model
             IsTrackEnd = false;
         }
 
-        public virtual bool CanEnterField(Track track)
+        public virtual bool CanEnterField(Track currentTrack)
         {
-            if (track.NextTrack == null)
+            if (NextTrack == null)
             {
                 return false;
             }
-            if (track.NextTrack.Cart != null && track.NextTrack.Cart.DrivesInverted)
+            if (NextTrack.Cart != null && NextTrack.Cart.DrivesInverted)
             {
-                if (track.NextTrack.Cart == null)
+                if (NextTrack.Cart == null)
                 {
                     return true;
                 }
             }
-            if (track.NextTrack.Cart == null)
+            if (NextTrack.Cart == null)
             {
                 return true;
             }
-            if (NextTrack.Cart != null && NextTrack.Cart.Track.NextTrack.Cart == null)
+            if (NextTrack.Cart != null && NextTrack.Cart.Track.NextTrack != null && NextTrack.Cart.Track.NextTrack.Cart == null)
             {
                 return true;
             }
-            if (track.NextTrack.Cart != null && !track.NextTrack.Cart.DrivesInverted)
+            if (NextTrack.Cart != null && !NextTrack.Cart.DrivesInverted)
             {
                 throw new Exception("Cart hit other cart");
             }
-            else if (track.PreviouseTrack.Cart != null && track.PreviouseTrack.Cart.DrivesInverted)
+            else if (PreviouseTrack.Cart != null && PreviouseTrack.Cart.DrivesInverted)
             {
                 throw new Exception("Cart hit other cart");
             }

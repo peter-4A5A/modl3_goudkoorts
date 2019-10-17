@@ -17,7 +17,7 @@ namespace Goudkoorts.Model
             IsTrackEnd = true;
         }
 
-        public override bool CanEnterField(Track track)
+        public override bool CanEnterField(Track currentTrack)
         {
             return true;
         }
