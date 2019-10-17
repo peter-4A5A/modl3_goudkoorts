@@ -11,7 +11,6 @@ namespace Goudkoorts.Model
         public bool IsFull { get; set; }
         private Track _track;
         public bool DrivesInverted { get; set; }
-        private Track _lastSwitch;
         public Track Track {
             get {
                 return _track;
@@ -28,7 +27,6 @@ namespace Goudkoorts.Model
         public Cart()
         {
             DrivesInverted = false;
-            _lastSwitch = null;
         }
 
         public void Move()
@@ -45,10 +43,19 @@ namespace Goudkoorts.Model
             {
                 return;
             }
-            if (!nextTrack.CanEnterField(Track))
+            if (nextTrack.IsYard)
+            {
+                TrackYard trackYard = (TrackYard)nextTrack;
+                if (!trackYard.CanEnterField(Track))
+                {
+                    return;
+                }
+            }
+            else if (!nextTrack.CanEnterField(Track))
             {
                 return;
             }
+
             if (!DrivesInverted || DrivesInverted && Track.IsSwitch)
             {
                 // Just go to the next Field

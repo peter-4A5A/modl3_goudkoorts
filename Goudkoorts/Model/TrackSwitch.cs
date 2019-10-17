@@ -38,11 +38,11 @@ namespace Goudkoorts.Model
             IsSwitch = true;
         }
 
-        public override bool CanEnterField(Track nextField)
+        public override bool CanEnterField(Track currentTrack)
         {
             if (!IsInverted)
             {
-                if (PreviouseTrack != nextField)
+                if (PreviouseTrack != currentTrack)
                 {
                     return false;
                 }
@@ -71,7 +71,7 @@ namespace Goudkoorts.Model
                 PreviouseTrack = Tracks[nextIndex];
                 
                 NextTrack = Tracks[1];
-                nextIndex++;
+                nextIndex += 2;
                 if (nextIndex > Tracks.Count - 1)
                 {
                     nextIndex = 0;

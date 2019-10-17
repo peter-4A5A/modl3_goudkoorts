@@ -33,7 +33,7 @@ namespace Goudkoorts.Controller
 
             // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;
-
+            _timer.Enabled = true;
             // Start the timer
             PlayGame();
         }
@@ -41,31 +41,47 @@ namespace Goudkoorts.Controller
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
             Game.MoveCarts();
-            Game.SpawnCart();
+            Random random = new Random();
+            int randomInt = random.Next(1, 6);
+            if (randomInt == 3)
+            {
+                // Need to spawn a cart
+                Game.SpawnCart();
+            }
             _gameView.Render();
+            if (_timer.Interval > 200)
+            {
+                _timer.Interval *= 0.98;
+            }
+            
         }
 
         public void PlayGame()
         {
+            Game.SpawnCart();
             _gameView = new GameView(Game);
-            _timer.Enabled = true;
+            _gameView.Render();
+            
             while (Game.IsPlaying)
             {
-                char key = Console.ReadKey().KeyChar;
-                HandleKeyPress(key.ToString());
+                try
+                {
+                    char key = Console.ReadKey().KeyChar;
+                    HandleKeyPress(key.ToString());
+                    _gameView.Render();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Game.IsPlaying = false;
+                }
+
             }
             _timer.Enabled = false;
         }
 
         public void HandleKeyPress(string key)
         {
-            Random random = new Random();
-            int randomInt = random.Next(1, 10);
-            if (randomInt == 3)
-            {
-                // Need to spawn a cart
-                Game.SpawnCart();
-            }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;
             trackSwitches = trackSwitches.Where(ts => ts.ListenToCharacter.ToLower().Equals(key)).ToList();
@@ -74,6 +90,7 @@ namespace Goudkoorts.Controller
             {
                 item.Switch();
             }
+            _gameView.Render();
         }
     }
 }
