@@ -28,7 +28,7 @@ namespace Goudkoorts.View
                 int secondIndex = 0;
                 while (secondIndex < row.Count)
                 {
-                    Field column = row[secondIndex];
+                    Track column = row[secondIndex];
                     if (column == null)
                     {
                         rowField += " ";

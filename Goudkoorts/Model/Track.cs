@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.Model
 {
-    public class Track : Field
+    public class Track
     {
         public virtual Track PreviouseTrack { get; set; }
+        public virtual string FieldCharacter { get; set; }
+        public virtual string DefaultFieldCharacter { get; set; }
         public virtual Track NextTrack { get; set; }
         private Cart _cart;
         public Cart Cart {
@@ -48,9 +50,6 @@ namespace Goudkoorts.Model
                 _carts = value;
             }
         }
-
-        public override string FieldCharacter {get; set; }
-
         private bool _isHorizontal;
         public bool IsHorizontal {
             get {

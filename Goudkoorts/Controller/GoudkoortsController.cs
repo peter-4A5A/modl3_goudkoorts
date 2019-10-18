@@ -40,29 +40,30 @@ namespace Goudkoorts.Controller
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
-            //try
-            //{
-            //    Game.MoveCarts();
-            //}
-            //catch (Exception)
-            //{
-            //    Game.IsPlaying = false;
-            //    _timer.Enabled = false;
-            //}
-            
-            //Random random = new Random();
-            //int randomInt = random.Next(1, 6);
-            //if (randomInt == 3)
-            //{
-            //    // Need to spawn a cart
-            //    Game.SpawnCart();
-            //}
-            //_gameView.Render();
-            //if (_timer.Interval > 200)
-            //{
-            //    _timer.Interval *= 0.98;
-            //}
-            
+            try
+            {
+                Game.MoveCarts();
+            }
+            catch (Exception)
+            {
+                Game.IsPlaying = false;
+                _timer.Enabled = false;
+                return;
+            }
+
+            Random random = new Random();
+            int randomInt = random.Next(1, 6);
+            if (randomInt == 3)
+            {
+                // Need to spawn a cart
+                Game.SpawnCart();
+            }
+            _gameView.Render();
+            if (_timer.Interval > 200)
+            {
+                _timer.Interval *= 0.98;
+            }
+
         }
 
         public void PlayGame()
@@ -72,11 +73,9 @@ namespace Goudkoorts.Controller
             _gameView.Render();
             
             while (Game.IsPlaying)
-            {
-                
+            {                
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
-                Game.MoveCarts();
                 _gameView.Render();
             }
             _timer.Enabled = false;
