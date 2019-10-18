@@ -59,7 +59,6 @@
     <Compile Include="View\GameView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config.example" />
     <None Include="App.config" />
     <None Include="classDiagram.cd" />
   </ItemGroup>

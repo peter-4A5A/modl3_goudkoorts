@@ -14,6 +14,7 @@ namespace Goudkoorts.Model
         {
             FieldCharacter = "k";
             DefaultFieldCharacter = FieldCharacter;
+            IsDock = true;
         }
     }
 }

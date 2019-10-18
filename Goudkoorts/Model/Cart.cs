@@ -27,6 +27,7 @@ namespace Goudkoorts.Model
         public Cart()
         {
             DrivesInverted = false;
+            IsFull = true;
         }
 
         public void Move()
@@ -50,6 +51,10 @@ namespace Goudkoorts.Model
                 {
                     return;
                 }
+            }
+            if (nextTrack.IsDock)
+            {
+                IsFull = false;
             }
             else if (!nextTrack.CanEnterField(Track))
             {

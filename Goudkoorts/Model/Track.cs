@@ -20,7 +20,16 @@ namespace Goudkoorts.Model
                 _cart = value;
                 if (_cart != null)
                 {
-                    FieldCharacter = "C";
+                    if (_cart.IsFull)
+                    {
+                        FieldCharacter = "C";
+                    }
+                    else
+                    {
+                        FieldCharacter = "c";
+                        
+                    }
+                    
                 }
                 else
                 {
@@ -56,6 +65,8 @@ namespace Goudkoorts.Model
         public bool IsYard { get; set; }
         public bool IsTrackEnd { get; set; }
 
+        public bool IsDock { get; set; }
+
         public Track()
         {
             FieldCharacter = "-";
@@ -64,6 +75,7 @@ namespace Goudkoorts.Model
             IsSwitch = false;
             IsYard = false;
             IsTrackEnd = false;
+            IsDock = false;
         }
 
         public virtual bool CanEnterField(Track currentTrack)
