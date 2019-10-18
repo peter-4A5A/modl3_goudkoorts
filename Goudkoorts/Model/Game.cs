@@ -10,7 +10,7 @@ namespace Goudkoorts.Model
     public class Game
     {
         public int Score { get; private set; }
-        public List<List<Field>> Map;
+        public List<List<Track>> Map;
 
         public List<TrackSwitch> TrackSwitches { get; set; }
         public List<Warehouse> WareHouses { get; set; }
@@ -29,11 +29,11 @@ namespace Goudkoorts.Model
             Carts = new List<Cart>();
             TrackYards = new List<TrackYard>();
 
-            Map = new List<List<Field>>();
+            Map = new List<List<Track>>();
             int index = 0;
             while (index < 12)
             {
-                Map.Add(new List<Field>());
+                Map.Add(new List<Track>());
                 int secondIndex = 0;
                 var currentField = Map[index];
                 while(secondIndex < 12)
@@ -76,12 +76,35 @@ namespace Goudkoorts.Model
                     Score++;
                 }
             }
+            
             if (removingCart == null)
             {
+                CheckForMultipleCartsOnSameField();
                 return;
             }
             Carts.Remove(removingCart);
             removingCart.Track.Cart = null;
+            CheckForMultipleCartsOnSameField();
+        }
+
+        private void CheckForMultipleCartsOnSameField()
+        {
+            for (int i = 0; i < Map.Count; i++)
+            {
+                List<Track> row = Map[i];
+                for (int j = 0; j < row.Count; j++)
+                {
+                    Track currentTrack = (Track) row[j];
+                    if (currentTrack == null)
+                    {
+                        continue;
+                    }
+                    if (currentTrack.Carts.Count > 1)
+                    {
+                        throw new Exception("Cart hit other cart");
+                    }
+                }
+            }
         }
 
         public void SetupMap()

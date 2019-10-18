@@ -24,11 +24,11 @@ namespace Goudkoorts.View
             while(index >= 0)
             {
                 string rowField = "";
-                List<Field> row = gameMap[index];
+                List<Track> row = gameMap[index];
                 int secondIndex = 0;
                 while (secondIndex < row.Count)
                 {
-                    Field column = row[secondIndex];
+                    Track column = row[secondIndex];
                     if (column == null)
                     {
                         rowField += " ";
