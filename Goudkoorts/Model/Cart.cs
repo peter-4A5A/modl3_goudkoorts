@@ -64,7 +64,6 @@ namespace Goudkoorts.Model
             if (!DrivesInverted || DrivesInverted && Track.IsSwitch)
             {
                 // Just go to the next Field
-                //Track nextTrack = Track.NextTrack;
                 Track.Cart = null;
                 Track = nextTrack;
                 Track.Cart = this;
