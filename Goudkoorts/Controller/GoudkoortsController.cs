@@ -25,7 +25,7 @@ namespace Goudkoorts.Controller
         public void Start()
         {
             // Start view
-            _timer = new System.Timers.Timer();
+            _timer = new Timer();
             _timer.Interval = 2000;
 
             // Hook up the Elapsed event for the timer.
@@ -40,19 +40,28 @@ namespace Goudkoorts.Controller
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
-            Game.MoveCarts();
-            Random random = new Random();
-            int randomInt = random.Next(1, 6);
-            if (randomInt == 3)
-            {
-                // Need to spawn a cart
-                Game.SpawnCart();
-            }
-            _gameView.Render();
-            if (_timer.Interval > 200)
-            {
-                _timer.Interval *= 0.98;
-            }
+            //try
+            //{
+            //    Game.MoveCarts();
+            //}
+            //catch (Exception)
+            //{
+            //    Game.IsPlaying = false;
+            //    _timer.Enabled = false;
+            //}
+            
+            //Random random = new Random();
+            //int randomInt = random.Next(1, 6);
+            //if (randomInt == 3)
+            //{
+            //    // Need to spawn a cart
+            //    Game.SpawnCart();
+            //}
+            //_gameView.Render();
+            //if (_timer.Interval > 200)
+            //{
+            //    _timer.Interval *= 0.98;
+            //}
             
         }
 
@@ -64,18 +73,11 @@ namespace Goudkoorts.Controller
             
             while (Game.IsPlaying)
             {
-                try
-                {
-                    char key = Console.ReadKey().KeyChar;
-                    HandleKeyPress(key.ToString());
-                    _gameView.Render();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Game.IsPlaying = false;
-                }
-
+                
+                char key = Console.ReadKey().KeyChar;
+                HandleKeyPress(key.ToString());
+                Game.MoveCarts();
+                _gameView.Render();
             }
             _timer.Enabled = false;
         }
@@ -90,7 +92,6 @@ namespace Goudkoorts.Controller
             {
                 item.Switch();
             }
-            _gameView.Render();
         }
     }
 }

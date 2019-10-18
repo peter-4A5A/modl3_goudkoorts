@@ -10,14 +10,25 @@ namespace Goudkoorts.Model
     {
         public virtual Track PreviouseTrack { get; set; }
         public virtual Track NextTrack { get; set; }
-
         private Cart _cart;
-        public virtual Cart Cart {
+        public Cart Cart {
             get {
                 return _cart;
             }
             set {
-                _cart = value;
+                if (value == null)
+                {
+                    Carts.Remove(_cart);
+                    _cart = value;
+                }
+                else
+                {
+                    _cart = value;
+                    if (!Carts.Contains(_cart))
+                    {
+                        Carts.Add(_cart);
+                    } 
+                }
                 if (_cart != null)
                 {
                     FieldCharacter = "C";
@@ -26,6 +37,15 @@ namespace Goudkoorts.Model
                 {
                     FieldCharacter = DefaultFieldCharacter;
                 }
+            }
+        }
+        private List<Cart> _carts;
+        public virtual List<Cart> Carts {
+            get {
+                return _carts;
+            }
+            set {
+                _carts = value;
             }
         }
 
@@ -58,6 +78,7 @@ namespace Goudkoorts.Model
 
         public Track()
         {
+            Carts = new List<Cart>();
             FieldCharacter = "-";
             DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
@@ -68,34 +89,10 @@ namespace Goudkoorts.Model
 
         public virtual bool CanEnterField(Track currentTrack)
         {
-            if (NextTrack == null)
-            {
-                return false;
-            }
-            if (NextTrack.Cart != null && NextTrack.Cart.DrivesInverted)
-            {
-                if (NextTrack.Cart == null)
-                {
-                    return true;
-                }
-            }
-            if (NextTrack.Cart == null)
-            {
-                return true;
-            }
-            if (NextTrack.Cart != null && NextTrack.Cart.Track.NextTrack != null && NextTrack.Cart.Track.NextTrack.Cart == null)
-            {
-                return true;
-            }
-            if (NextTrack.Cart != null && !NextTrack.Cart.DrivesInverted)
-            {
-                throw new Exception("Cart hit other cart");
-            }
-            else if (PreviouseTrack.Cart != null && PreviouseTrack.Cart.DrivesInverted)
-            {
-                throw new Exception("Cart hit other cart");
-            }
-            return false;
+            // We are the next field of the cart
+            // And we need to check if he could enter
+
+            return true;
         }
 
     }

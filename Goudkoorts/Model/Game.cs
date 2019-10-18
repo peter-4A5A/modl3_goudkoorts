@@ -10,7 +10,7 @@ namespace Goudkoorts.Model
     public class Game
     {
         public int Score { get; private set; }
-        public List<List<Field>> Map;
+        public List<List<Track>> Map;
 
         public List<TrackSwitch> TrackSwitches { get; set; }
         public List<Warehouse> WareHouses { get; set; }
@@ -29,11 +29,11 @@ namespace Goudkoorts.Model
             Carts = new List<Cart>();
             TrackYards = new List<TrackYard>();
 
-            Map = new List<List<Field>>();
+            Map = new List<List<Track>>();
             int index = 0;
             while (index < 12)
             {
-                Map.Add(new List<Field>());
+                Map.Add(new List<Track>());
                 int secondIndex = 0;
                 var currentField = Map[index];
                 while(secondIndex < 12)
@@ -48,8 +48,8 @@ namespace Goudkoorts.Model
         public void SpawnCart()
         {
             Random random = new Random();
-            int selectedWarehouseIndex = random.Next(0, WareHouses.Count);
-            Warehouse SelectedWareHouse = WareHouses[selectedWarehouseIndex];
+            //int selectedWarehouseIndex = random.Next(0, WareHouses.Count);
+            Warehouse SelectedWareHouse = WareHouses[1];
             Track nextWarehouseTrack = SelectedWareHouse.NextTrack;
             if (nextWarehouseTrack.Cart != null)
             {
@@ -72,12 +72,35 @@ namespace Goudkoorts.Model
                     removingCart = item.Track.Cart;
                 }
             }
+            
             if (removingCart == null)
             {
+                CheckForMultipleCartsOnSameField();
                 return;
             }
             Carts.Remove(removingCart);
             removingCart.Track.Cart = null;
+            CheckForMultipleCartsOnSameField();
+        }
+
+        private void CheckForMultipleCartsOnSameField()
+        {
+            for (int i = 0; i < Map.Count; i++)
+            {
+                List<Track> row = Map[i];
+                for (int j = 0; j < row.Count; j++)
+                {
+                    Track currentTrack = (Track) row[j];
+                    if (currentTrack == null)
+                    {
+                        continue;
+                    }
+                    if (currentTrack.Carts.Count > 1)
+                    {
+                        throw new Exception("Cart hit other cart");
+                    }
+                }
+            }
         }
 
         public void SetupMap()
@@ -361,6 +384,8 @@ namespace Goudkoorts.Model
             Map[3][1] = bFirst;
             Map[3][2] = bSecondTrack;
             Map[3][3] = bThirthTrack;
+            bThirthTrack.Cart = new Cart() { Track = bThirthTrack };
+            Carts.Add(bThirthTrack.Cart);
 
             Map[3][5] = cbTwo;
             Map[3][6] = cbOne;
