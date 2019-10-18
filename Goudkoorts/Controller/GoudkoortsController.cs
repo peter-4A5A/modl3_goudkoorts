@@ -58,6 +58,10 @@ namespace Goudkoorts.Controller
                 // Need to spawn a cart
                 Game.SpawnCart();
             }
+            if(randomInt == 5)
+            {
+                Game.SpawnShip();
+            }
             _gameView.Render();
             if (_timer.Interval > 200)
             {

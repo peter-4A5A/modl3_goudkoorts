@@ -54,7 +54,12 @@ namespace Goudkoorts.Model
             }
             if (nextTrack.IsDock)
             {
-                IsFull = false;
+                TrackDock dock = (TrackDock) nextTrack;
+                if(dock.Ship != null)
+                {
+                    IsFull = false;
+                    dock.Ship.NumberOfDumps++;
+                }
             }
             else if (!nextTrack.CanEnterField(Track))
             {

@@ -16,5 +16,11 @@ namespace Goudkoorts.Model
             DefaultFieldCharacter = FieldCharacter;
             IsDock = true;
         }
+
+        public void SpawnShip()
+        {
+            FieldCharacter = "K";
+            Ship = new Ship();
+        }
     }
 }

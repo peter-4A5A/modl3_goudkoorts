@@ -61,6 +61,14 @@ namespace Goudkoorts.Model
             Carts.Add(cart);
         }
 
+        public void SpawnShip()
+        {
+            if(TrackDock.Ship == null)
+            {
+                TrackDock.SpawnShip();
+            }
+        }
+
         public void MoveCarts()
         {
             Cart removingCart = null;
@@ -73,7 +81,10 @@ namespace Goudkoorts.Model
                 }
                 if (item.Track.IsDock)
                 {
-                    Score++;
+                    if(TrackDock.Ship != null)
+                    {
+                        Score++;
+                    }
                 }
             }
             
