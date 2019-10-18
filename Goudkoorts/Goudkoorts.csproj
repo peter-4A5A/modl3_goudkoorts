@@ -55,6 +55,7 @@
     <Compile Include="Model\TrackYard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\EndGameView.cs" />
     <Compile Include="View\GameView.cs" />
   </ItemGroup>
   <ItemGroup>

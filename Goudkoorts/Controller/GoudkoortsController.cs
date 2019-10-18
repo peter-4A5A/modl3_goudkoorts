@@ -79,6 +79,14 @@ namespace Goudkoorts.Controller
                 _gameView.Render();
             }
             _timer.Enabled = false;
+            ShowEndGameView();
+        }
+
+        public void ShowEndGameView()
+        {
+            EndGameView endView = new EndGameView(Game);
+            endView.Render();
+            Console.ReadLine();
         }
 
         public void HandleKeyPress(string key)
