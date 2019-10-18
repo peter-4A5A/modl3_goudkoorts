@@ -27,6 +27,7 @@ namespace Goudkoorts.Model
                     else
                     {
                         FieldCharacter = "c";
+                        
                     }
                     
                 }

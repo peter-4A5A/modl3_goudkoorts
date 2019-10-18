@@ -71,6 +71,10 @@ namespace Goudkoorts.Model
                 {
                     removingCart = item.Track.Cart;
                 }
+                if (item.Track.IsDock)
+                {
+                    Score++;
+                }
             }
             if (removingCart == null)
             {
