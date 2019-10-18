@@ -48,11 +48,12 @@ namespace Goudkoorts.Controller
             {
                 Game.IsPlaying = false;
                 _timer.Enabled = false;
+                ShowEndGameView();
                 return;
             }
 
             Random random = new Random();
-            int randomInt = random.Next(1, 6);
+            int randomInt = random.Next(1, 5);
             if (randomInt == 3)
             {
                 // Need to spawn a cart
@@ -79,7 +80,6 @@ namespace Goudkoorts.Controller
                 _gameView.Render();
             }
             _timer.Enabled = false;
-            ShowEndGameView();
         }
 
         public void ShowEndGameView()
