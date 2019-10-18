@@ -1,4 +1,5 @@
-﻿using Goudkoorts.Model;
+﻿using Goudkoorts.Interface;
+using Goudkoorts.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Goudkoorts.View
 {
-    public class EndGameView
+    public class EndGameView : IView
     {
         private Game _game;
         public EndGameView(Game game)
