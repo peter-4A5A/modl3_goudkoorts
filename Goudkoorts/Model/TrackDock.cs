@@ -22,5 +22,17 @@ namespace Goudkoorts.Model
             FieldCharacter = "K";
             Ship = new Ship();
         }
+
+        public void CheckForCharacter()
+        {
+            if(Ship.NumberOfDumps > 0)
+            {
+                FieldCharacter = "s";
+            }
+            else if(Ship.NumberOfDumps > 4)
+            {
+                FieldCharacter = "S";
+            }
+        }
     }
 }

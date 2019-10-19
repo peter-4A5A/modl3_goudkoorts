@@ -83,6 +83,11 @@ namespace Goudkoorts.Model
                 {
                     if(TrackDock.Ship != null)
                     {
+                        if(TrackDock.Ship.NumberOfDumps == 8)
+                        {
+                            Score += 10;
+                            TrackDock.Ship = null;
+                        }
                         Score++;
                     }
                 }
