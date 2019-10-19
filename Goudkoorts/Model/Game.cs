@@ -92,7 +92,9 @@ namespace Goudkoorts.Model
                     }
                 }
             }
-            
+
+            TrackDock.CheckForShip();
+
             if (removingCart == null)
             {
                 CheckForMultipleCartsOnSameField();

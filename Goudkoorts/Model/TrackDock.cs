@@ -19,20 +19,36 @@ namespace Goudkoorts.Model
 
         public void SpawnShip()
         {
-            FieldCharacter = "K";
             Ship = new Ship();
         }
 
-        public void CheckForCharacter()
+        public void CheckForShip()
         {
-            if(Ship.NumberOfDumps > 0)
+            if (Ship == null)
             {
-                FieldCharacter = "s";
+                DefaultFieldCharacter = "k";
+                return;
             }
-            else if(Ship.NumberOfDumps > 4)
+            if(Cart != null)
+            {
+                FieldCharacter = Cart.CartCharacter;
+            }else if (Ship.NumberOfDumps > 4)
             {
                 FieldCharacter = "S";
+                DefaultFieldCharacter = "S";
             }
+            else if (Ship.NumberOfDumps > 0)
+            {
+                FieldCharacter = "s";
+                DefaultFieldCharacter = "s";
+            }
+            else if(Ship != null)
+            {
+                DefaultFieldCharacter = "K";
+                FieldCharacter = "K";
+            }
+            
+            
         }
     }
 }

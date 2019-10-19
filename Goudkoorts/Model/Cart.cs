@@ -11,6 +11,25 @@ namespace Goudkoorts.Model
         public bool IsFull { get; set; }
         private Track _track;
         public bool DrivesInverted { get; set; }
+
+        private string _cartCharacter;
+
+        public string CartCharacter
+        {
+            get
+            {
+                if (IsFull)
+                {
+                    _cartCharacter = "C";
+                }
+                else
+                {
+                    _cartCharacter = "c";
+                }
+
+                return _cartCharacter;
+            }
+        }
         public Track Track {
             get {
                 return _track;

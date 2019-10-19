@@ -75,12 +75,14 @@ namespace Goudkoorts.Controller
             Game.SpawnCart();
             _gameView = new GameView(Game);
             _gameView.Render();
-            
+
             while (Game.IsPlaying)
             {                
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
                 _gameView.Render();
+
+                Game.MoveCarts();
             }
             _timer.Enabled = false;
         }
