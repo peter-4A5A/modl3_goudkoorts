@@ -32,7 +32,6 @@ namespace Goudkoorts.Model
 
         public void Move()
         {
-            bool nextInverted = AreWeGoingInverted();
             TrackSwitch trackSwitch = null;
             if (Track.IsSwitch)
             {
@@ -75,33 +74,6 @@ namespace Goudkoorts.Model
                 Track = prevTrack;
                 Track.Cart = this;
             }
-            DrivesInverted = nextInverted;
-        }
-
-        private bool AreWeGoingInverted()
-        {
-            if (Track.PreviouseTrack == null)
-            {
-                return DrivesInverted;
-            }
-            Track nextTrack = Track.NextTrack;
-            if (Track.IsSwitch)
-            {
-                if (Track == nextTrack.NextTrack)
-                {
-                    // We are going inverted
-                    return true;
-                }
-                else if (Track == nextTrack.PreviouseTrack && !Track.IsSwitch && !nextTrack.IsSwitch)
-                {
-                    return false;
-                }
-                else if (Track.IsSwitch && DrivesInverted)
-                {
-                    return false;
-                }
-            }
-            return DrivesInverted;
         }
     }
 }

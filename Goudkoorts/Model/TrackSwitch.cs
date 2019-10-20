@@ -24,7 +24,7 @@ namespace Goudkoorts.Model
 
         public List<Track> Tracks { get; set; }
 
-        private int nextIndex = 0;
+        private int _nextIndex = 0;
 
         public bool IsInverted { get; set; }
 
@@ -54,10 +54,6 @@ namespace Goudkoorts.Model
             if (Tracks == null)
             {
                 SetupTrackList();
-                if (IsInverted)
-                {
-                    nextIndex = Tracks.Count - 2;
-                }
             }
             if (Cart != null)
             {
@@ -68,13 +64,13 @@ namespace Goudkoorts.Model
             // Onder en boven mogen niet samen
             if (!IsInverted)
             {
-                PreviouseTrack = Tracks[nextIndex];
+                PreviouseTrack = Tracks[_nextIndex];
                 
                 NextTrack = Tracks[1];
-                nextIndex += 2;
-                if (nextIndex > Tracks.Count - 1)
+                _nextIndex += 2;
+                if (_nextIndex > Tracks.Count - 1)
                 {
-                    nextIndex = 0;
+                    _nextIndex = 0;
                 }
                 HandleFieldCharacter();
                 return;
@@ -82,11 +78,11 @@ namespace Goudkoorts.Model
             if (IsInverted)
             {
                 PreviouseTrack = Tracks[2];
-                NextTrack = Tracks[nextIndex];
-                nextIndex--;
-                if (nextIndex < 0)
+                NextTrack = Tracks[_nextIndex];
+                _nextIndex--;
+                if (_nextIndex < 0)
                 {
-                    nextIndex = Tracks.Count - 2;
+                    _nextIndex = Tracks.Count - 2;
                 }
                 HandleFieldCharacter();
                 return;

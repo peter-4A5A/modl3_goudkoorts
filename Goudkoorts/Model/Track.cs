@@ -41,8 +41,7 @@ namespace Goudkoorts.Model
                     {
                         FieldCharacter = "c";
                         
-                    }
-                    
+                    }                    
                 }
                 else
                 {
