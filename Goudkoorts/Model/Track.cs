@@ -33,15 +33,7 @@ namespace Goudkoorts.Model
                 }
                 if (_cart != null)
                 {
-                    if (_cart.IsFull)
-                    {
-                        FieldCharacter = "C";
-                    }
-                    else
-                    {
-                        FieldCharacter = "c";
-                        
-                    }                    
+                    FieldCharacter = _cart.CartCharacter;
                 }
                 else
                 {

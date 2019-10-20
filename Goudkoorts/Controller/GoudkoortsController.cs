@@ -59,6 +59,10 @@ namespace Goudkoorts.Controller
                 // Need to spawn a cart
                 Game.SpawnCart();
             }
+            if(randomInt == 5)
+            {
+                Game.SpawnShip();
+            }
             _gameView.Render();
             if (_timer.Interval > 200)
             {
@@ -72,12 +76,14 @@ namespace Goudkoorts.Controller
             Game.SpawnCart();
             _gameView = new GameView(Game);
             _gameView.Render();
-            
+
             while (Game.IsPlaying)
             {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
                 _gameView.Render();
+
+                Game.MoveCarts();
             }
             _timer.Enabled = false;
         }
