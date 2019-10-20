@@ -24,6 +24,8 @@ namespace Goudkoorts.Controller
 
         public void Start()
         {
+            StartGameView startGameView = new StartGameView();
+            startGameView.Render();
             // Start view
             _timer = new Timer();
             _timer.Interval = 2000;

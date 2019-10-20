@@ -29,11 +29,12 @@ namespace Goudkoorts.View
             Console.WriteLine("x--------k-|");
             Console.WriteLine("           |");
             Console.WriteLine("A--| |---- |");
-            Console.WriteLine("   S-S   S-|");
+            Console.WriteLine("   W-R   Q-|");
             Console.WriteLine("B--| |- --  ");
-            Console.WriteLine("      S-S   ");
+            Console.WriteLine("      E-T   ");
             Console.WriteLine("C-----| |--|");
             Console.WriteLine(" ________--|");
+            Console.ReadKey();
         }
     }
 }
