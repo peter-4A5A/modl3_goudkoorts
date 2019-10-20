@@ -74,7 +74,7 @@ namespace Goudkoorts.Controller
             _gameView.Render();
             
             while (Game.IsPlaying)
-            {                
+            {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
                 _gameView.Render();
