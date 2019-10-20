@@ -15,7 +15,7 @@ namespace Goudkoorts.Model
         public Track RightTrack { get; set; }
 
         public override Track NextTrack { get; set; }
-        public override Track PreviouseTrack { get; set; }
+        public override Track PreviousTrack { get; set; }
 
         public override string FieldCharacter { get; set; }
 
@@ -42,7 +42,7 @@ namespace Goudkoorts.Model
         {
             if (!IsInverted)
             {
-                if (PreviouseTrack != currentTrack)
+                if (PreviousTrack != currentTrack)
                 {
                     return false;
                 }
@@ -64,7 +64,7 @@ namespace Goudkoorts.Model
             // Onder en boven mogen niet samen
             if (!IsInverted)
             {
-                PreviouseTrack = Tracks[_nextIndex];
+                PreviousTrack = Tracks[_nextIndex];
                 
                 NextTrack = Tracks[1];
                 _nextIndex += 2;
@@ -77,7 +77,7 @@ namespace Goudkoorts.Model
             }
             if (IsInverted)
             {
-                PreviouseTrack = Tracks[2];
+                PreviousTrack = Tracks[2];
                 NextTrack = Tracks[_nextIndex];
                 _nextIndex--;
                 if (_nextIndex < 0)
@@ -91,49 +91,49 @@ namespace Goudkoorts.Model
 
         private void HandleFieldCharacter()
         {
-            if (PreviouseTrack == UpTrack && NextTrack == RightTrack)
+            if (PreviousTrack == UpTrack && NextTrack == RightTrack)
             {
                 FieldCharacter = "└";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            else if (NextTrack == UpTrack && PreviouseTrack == RightTrack)
+            else if (NextTrack == UpTrack && PreviousTrack == RightTrack)
             {
                 FieldCharacter = "└";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            if (PreviouseTrack == RightTrack && NextTrack == DownTrack)
+            if (PreviousTrack == RightTrack && NextTrack == DownTrack)
             {
                 FieldCharacter = "┌";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            else if (NextTrack == RightTrack && PreviouseTrack == DownTrack)
+            else if (NextTrack == RightTrack && PreviousTrack == DownTrack)
             {
                 FieldCharacter = "┌";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            if (PreviouseTrack == DownTrack && NextTrack == LeftTrack)
+            if (PreviousTrack == DownTrack && NextTrack == LeftTrack)
             {
                 FieldCharacter = "┐";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            else if (NextTrack == DownTrack && PreviouseTrack == LeftTrack)
+            else if (NextTrack == DownTrack && PreviousTrack == LeftTrack)
             {
                 FieldCharacter = "┐";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            if (PreviouseTrack == LeftTrack && NextTrack == UpTrack)
+            if (PreviousTrack == LeftTrack && NextTrack == UpTrack)
             {
                 FieldCharacter = "┘";
                 DefaultFieldCharacter = FieldCharacter;
                 return;
             }
-            else if (NextTrack == LeftTrack && PreviouseTrack == UpTrack)
+            else if (NextTrack == LeftTrack && PreviousTrack == UpTrack)
             {
                 FieldCharacter = "┘";
                 DefaultFieldCharacter = FieldCharacter;
