@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\GoudkoortsController.cs" />
+    <Compile Include="Interface\IView.cs" />
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\Ship.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Model\TrackYard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\StartGameView.cs" />
     <Compile Include="View\EndGameView.cs" />
     <Compile Include="View\GameView.cs" />
   </ItemGroup>

@@ -24,6 +24,8 @@ namespace Goudkoorts.Controller
 
         public void Start()
         {
+            StartGameView startGameView = new StartGameView();
+            startGameView.Render();
             // Start view
             _timer = new Timer();
             _timer.Interval = 2000;
@@ -78,7 +80,7 @@ namespace Goudkoorts.Controller
             _gameView.Render();
 
             while (Game.IsPlaying)
-            {                
+            {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
                 _gameView.Render();

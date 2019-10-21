@@ -140,9 +140,9 @@ namespace Goudkoorts.Model
             Track aThirthTrack = new Track();
             aThirthTrack.IsHorizontal = false;
             aFirst.NextTrack = aSecondTrack;
-            aSecondTrack.PreviouseTrack = aFirst;
+            aSecondTrack.PreviousTrack = aFirst;
             aSecondTrack.NextTrack = aThirthTrack;
-            aThirthTrack.PreviouseTrack = aSecondTrack;
+            aThirthTrack.PreviousTrack = aSecondTrack;
 
             // Making track from a to first switch for warehouse B
             Track bFirst = new Track();
@@ -150,9 +150,9 @@ namespace Goudkoorts.Model
             Track bThirthTrack = new Track();
             bThirthTrack.IsHorizontal = false;
             bFirst.NextTrack = bSecondTrack;
-            bSecondTrack.PreviouseTrack = bFirst;
+            bSecondTrack.PreviousTrack = bFirst;
             bSecondTrack.NextTrack = bThirthTrack;
-            bThirthTrack.PreviouseTrack = bSecondTrack;
+            bThirthTrack.PreviousTrack = bSecondTrack;
 
             whA.NextTrack = aFirst;
             whB.NextTrack = bFirst;
@@ -164,7 +164,7 @@ namespace Goudkoorts.Model
             abSwitch.DownTrack = bThirthTrack;
             Track trackBetweenSwitches = new Track();
             abSwitch.RightTrack = trackBetweenSwitches;
-            trackBetweenSwitches.PreviouseTrack = abSwitch;
+            trackBetweenSwitches.PreviousTrack = abSwitch;
             aThirthTrack.NextTrack = abSwitch;
             // Making the switch between A and B
 
@@ -173,21 +173,21 @@ namespace Goudkoorts.Model
             whC.NextTrack = cFirstTrack;
             Track cSecondTrack = new Track();
             cFirstTrack.NextTrack = cSecondTrack;
-            cSecondTrack.PreviouseTrack = cFirstTrack;
+            cSecondTrack.PreviousTrack = cFirstTrack;
             
             Track cThirthTrack = new Track();
             cSecondTrack.NextTrack = cThirthTrack;
-            cThirthTrack.PreviouseTrack = cSecondTrack;
+            cThirthTrack.PreviousTrack = cSecondTrack;
             Track cFourthTrack = new Track();
             cThirthTrack.NextTrack = cFourthTrack;
-            cFourthTrack.PreviouseTrack = cThirthTrack;
+            cFourthTrack.PreviousTrack = cThirthTrack;
             Track cFifthTrack = new Track();
             cFourthTrack.NextTrack = cFifthTrack;
-            cFifthTrack.PreviouseTrack = cFourthTrack;
+            cFifthTrack.PreviousTrack = cFourthTrack;
             Track cSixthTrack = new Track();
             cSixthTrack.IsHorizontal = false;
             cFifthTrack.NextTrack = cSixthTrack;
-            cSixthTrack.PreviouseTrack = cFifthTrack;
+            cSixthTrack.PreviousTrack = cFifthTrack;
 
             TrackSwitch cSwitch = new TrackSwitch("E");
             TrackSwitches.Add(cSwitch);
@@ -201,19 +201,19 @@ namespace Goudkoorts.Model
             abcSwitch.LeftTrack = trackBetweenSwitches;
 
             Track cbOne = new Track();
-            cbOne.PreviouseTrack = cSwitch;
+            cbOne.PreviousTrack = cSwitch;
             cSwitch.UpTrack = cbOne;
 
             Track cbTwo = new Track();
             cbTwo.IsHorizontal = false;
             cbOne.NextTrack = cbTwo;
-            cbTwo.PreviouseTrack = cbOne;
+            cbTwo.PreviousTrack = cbOne;
             cbTwo.NextTrack = abcSwitch;
             abcSwitch.DownTrack = cbTwo;
 
             // Track between cSwitch and cRange
             Track ccFirst = new Track();
-            ccFirst.PreviouseTrack = cSwitch;
+            ccFirst.PreviousTrack = cSwitch;
             cSwitch.RightTrack = ccFirst;
             TrackSwitch cRangeSwitch = new TrackSwitch("T");
             TrackSwitches.Add(cRangeSwitch);
@@ -223,10 +223,10 @@ namespace Goudkoorts.Model
             // Track between cRange and abccRange
             Track caFirst = new Track();
             cRangeSwitch.UpTrack = caFirst;
-            caFirst.PreviouseTrack = cRangeSwitch;
+            caFirst.PreviousTrack = cRangeSwitch;
             Track caSecond = new Track();
             caFirst.NextTrack = caSecond;
-            caSecond.PreviouseTrack = caFirst;
+            caSecond.PreviousTrack = caFirst;
             TrackSwitch abccRange = new TrackSwitch("Q");
             TrackSwitches.Add(abccRange);
             abccRange.DownTrack = caSecond;
@@ -236,128 +236,128 @@ namespace Goudkoorts.Model
             Track abcFirst = new Track();
             abcFirst.IsHorizontal = false;
             abcSwitch.UpTrack = abcFirst;
-            abcFirst.PreviouseTrack = abcSwitch;
+            abcFirst.PreviousTrack = abcSwitch;
             Track abcSecond = new Track();
             abcFirst.NextTrack = abcSecond;
-            abcSecond.PreviouseTrack = abcFirst;
+            abcSecond.PreviousTrack = abcFirst;
             Track abcTirth = new Track();
             abcSecond.NextTrack = abcTirth;
-            abcTirth.PreviouseTrack = abcSecond;
+            abcTirth.PreviousTrack = abcSecond;
             Track abcFourth = new Track();
             abcTirth.NextTrack = abcFourth;
-            abcFourth.PreviouseTrack = abcTirth;
+            abcFourth.PreviousTrack = abcTirth;
             Track abcFith = new Track();
             abcFourth.NextTrack = abcFith;
-            abcFith.PreviouseTrack = abcFourth;
+            abcFith.PreviousTrack = abcFourth;
             abcFith.NextTrack = abccRange;
             abccRange.UpTrack = abcFith;
 
             // Track between abbc range k dock
             Track kFirst = new Track();
             abccRange.RightTrack = kFirst;
-            kFirst.PreviouseTrack = abcSwitch;
+            kFirst.PreviousTrack = abcSwitch;
             Track kSecond = new Track();
             kSecond.IsHorizontal = false;
             kFirst.NextTrack = kSecond;
-            kSecond.PreviouseTrack = kFirst;
+            kSecond.PreviousTrack = kFirst;
             Track kTirth = new Track();
             kTirth.IsHorizontal = false;
             kSecond.NextTrack = kTirth;
-            kTirth.PreviouseTrack = kSecond;
+            kTirth.PreviousTrack = kSecond;
             Track kFourth = new Track();
             kFourth.IsHorizontal = false;
             kTirth.NextTrack = kFourth;
-            kFourth.PreviouseTrack = kTirth;
+            kFourth.PreviousTrack = kTirth;
             Track kFith = new Track();
             kFith.IsHorizontal = false;
             kFourth.NextTrack = kFith;
-            kFith.PreviouseTrack = kFourth;
+            kFith.PreviousTrack = kFourth;
             Track kSixth = new Track();
             kFith.NextTrack = kSixth;
-            kSixth.PreviouseTrack = kFith;
+            kSixth.PreviousTrack = kFith;
             TrackDock = new TrackDock();
             kSixth.NextTrack = TrackDock;
-            TrackDock.PreviouseTrack = kSixth;
+            TrackDock.PreviousTrack = kSixth;
             Track EightTrack = new Track();
             TrackDock.NextTrack = EightTrack;
-            EightTrack.PreviouseTrack = TrackDock;
+            EightTrack.PreviousTrack = TrackDock;
             Track ninthTrack = new Track();
             EightTrack.NextTrack = ninthTrack;
-            ninthTrack.PreviouseTrack = EightTrack;
+            ninthTrack.PreviousTrack = EightTrack;
             Track tenthTrack = new Track();
             ninthTrack.NextTrack = tenthTrack;
-            tenthTrack.PreviouseTrack = ninthTrack;
+            tenthTrack.PreviousTrack = ninthTrack;
             Track eleventhTrack = new Track();
             tenthTrack.NextTrack = eleventhTrack;
-            eleventhTrack.PreviouseTrack = tenthTrack;
+            eleventhTrack.PreviousTrack = tenthTrack;
             Track twelfthTack = new Track();
             eleventhTrack.NextTrack = twelfthTack;
-            twelfthTack.PreviouseTrack = eleventhTrack;
+            twelfthTack.PreviousTrack = eleventhTrack;
             Track tirtheenthTrach = new Track();
             twelfthTack.NextTrack = tirtheenthTrach;
-            tirtheenthTrach.PreviouseTrack = twelfthTack;
+            tirtheenthTrach.PreviousTrack = twelfthTack;
             Track fourtheenthTrack = new Track();
             tirtheenthTrach.NextTrack = fourtheenthTrack;
-            fourtheenthTrack.PreviouseTrack = tirtheenthTrach;
+            fourtheenthTrack.PreviousTrack = tirtheenthTrach;
             Track fiftheenthTrack = new Track();
             fourtheenthTrack.NextTrack = fiftheenthTrack;
-            fiftheenthTrack.PreviouseTrack = fourtheenthTrack;
+            fiftheenthTrack.PreviousTrack = fourtheenthTrack;
 
             TrackEnd = new TrackEnd();
             fiftheenthTrack.NextTrack = TrackEnd;
-            TrackEnd.PreviouseTrack = fiftheenthTrack;
+            TrackEnd.PreviousTrack = fiftheenthTrack;
 
             // Track between ccRange switch and before the range
             Track cRFirst = new Track();
             cRFirst.IsHorizontal = false;
             cRangeSwitch.DownTrack = cRFirst;
-            cRFirst.PreviouseTrack = cRangeSwitch;
+            cRFirst.PreviousTrack = cRangeSwitch;
             Track cRSecond = new Track();
             cRFirst.NextTrack = cRSecond;
-            cRSecond.PreviouseTrack = cRFirst;
+            cRSecond.PreviousTrack = cRFirst;
             Track cRTirth = new Track();
             cRSecond.NextTrack = cRTirth;
-            cRTirth.PreviouseTrack = cRSecond;
+            cRTirth.PreviousTrack = cRSecond;
             Track cRFourth = new Track();
             cRFourth.IsHorizontal = false;
             cRTirth.NextTrack = cRFourth;
-            cRFourth.PreviouseTrack = cRTirth;
+            cRFourth.PreviousTrack = cRTirth;
             Track cRFifth = new Track();
             cRFifth.IsHorizontal = false;
             cRFourth.NextTrack = cRFifth;
-            cRFifth.PreviouseTrack = cRFourth;
+            cRFifth.PreviousTrack = cRFourth;
             Track cRSixth = new Track();
             cRFifth.NextTrack = cRSixth;
-            cRSixth.PreviouseTrack = cRFifth;
+            cRSixth.PreviousTrack = cRFifth;
             Track cRSeventh = new Track();
             cRSixth.NextTrack = cRSeventh;
-            cRSeventh.PreviouseTrack = cRSixth;
+            cRSeventh.PreviousTrack = cRSixth;
 
             // The range from right to left
             TrackYard yFirst = new TrackYard();
             cRSeventh.NextTrack = yFirst;
-            yFirst.PreviouseTrack = yFirst;
+            yFirst.PreviousTrack = yFirst;
             TrackYard ySecond = new TrackYard();
             yFirst.NextTrack = ySecond;
-            ySecond.PreviouseTrack = yFirst;
+            ySecond.PreviousTrack = yFirst;
             TrackYard yTirth = new TrackYard();
             ySecond.NextTrack = yTirth;
-            yTirth.PreviouseTrack = ySecond;
+            yTirth.PreviousTrack = ySecond;
             TrackYard yFourth = new TrackYard();
             yTirth.NextTrack = yFourth;
-            yFourth.PreviouseTrack = yTirth;
+            yFourth.PreviousTrack = yTirth;
             TrackYard yFifth = new TrackYard();
             yFourth.NextTrack = yFifth;
-            yFifth.PreviouseTrack = yFourth;
+            yFifth.PreviousTrack = yFourth;
             TrackYard ySixth = new TrackYard();
             yFifth.NextTrack = ySixth;
-            ySixth.PreviouseTrack = yFifth;
+            ySixth.PreviousTrack = yFifth;
             TrackYard ySeventh = new TrackYard();
             ySixth.NextTrack = ySeventh;
-            ySeventh.PreviouseTrack = ySixth;
+            ySeventh.PreviousTrack = ySixth;
             TrackYard yEigth = new TrackYard();
             ySeventh.NextTrack = yEigth;
-            yEigth.PreviouseTrack = ySeventh;
+            yEigth.PreviousTrack = ySeventh;
 
             cRangeSwitch.IsInverted = true;
             abcSwitch.IsInverted = true;

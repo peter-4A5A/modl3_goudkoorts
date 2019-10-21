@@ -8,7 +8,7 @@ namespace Goudkoorts.Model
 {
     public class Track
     {
-        public virtual Track PreviouseTrack { get; set; }
+        public virtual Track PreviousTrack { get; set; }
         public virtual string FieldCharacter { get; set; }
         public virtual string DefaultFieldCharacter { get; set; }
         public virtual Track NextTrack { get; set; }
