@@ -20,7 +20,7 @@ namespace Goudkoorts.View
             Console.WriteLine("|  Dit gaat met verschillende characters|");
             Console.WriteLine("|  Namelijk die je ziet in het voorbeeld|");
             Console.WriteLine("|  De warehouses zijn: A,B en C         |");
-            Console.WriteLine("|  De wissels zijn te bedienen me:      |");
+            Console.WriteLine("|  De wissels zijn te bedienen met:      |");
             Console.WriteLine("|  W, R, E, T, Q                        |");
             Console.WriteLine("|  De x is het einde                    |");
             Console.WriteLine("|  k is het dock en een S staat         |");
