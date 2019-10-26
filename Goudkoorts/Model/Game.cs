@@ -22,12 +22,14 @@ namespace Goudkoorts.Model
 
         public TrackEnd TrackEnd { get; set; }
         public bool IsPlaying { get; set; }
+        public bool BlockTrackSwitchesMovement { get; set; }
         public Game()
         {
             WareHouses = new List<Warehouse>();
             TrackSwitches = new List<TrackSwitch>();
             Carts = new List<Cart>();
             TrackYards = new List<TrackYard>();
+            BlockTrackSwitchesMovement = false;
 
             Map = new List<List<Track>>();
             int index = 0;
@@ -71,6 +73,10 @@ namespace Goudkoorts.Model
 
         public void MoveCarts()
         {
+            if (BlockTrackSwitchesMovement)
+            {
+                return;
+            }
             Cart removingCart = null;
             foreach (Cart item in Carts)
             {

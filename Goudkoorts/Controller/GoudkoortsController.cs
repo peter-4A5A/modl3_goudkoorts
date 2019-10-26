@@ -42,6 +42,7 @@ namespace Goudkoorts.Controller
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
+            Game.BlockTrackSwitchesMovement = true;
             try
             {
                 Game.MoveCarts();
@@ -70,7 +71,7 @@ namespace Goudkoorts.Controller
             {
                 _timer.Interval *= 0.98;
             }
-
+            Game.BlockTrackSwitchesMovement = false;
         }
 
         public void PlayGame()
