@@ -13,11 +13,12 @@ namespace Goudkoorts.Controller
     {
         private Timer _timer;
         private GameView _gameView;
-
+        private bool _blockSwitchMovement;
         public Game Game { get; set; }
 
         public GoudkoortsController()
         {
+            _blockSwitchMovement = false;
             Game = new Game();
             Game.SetupMap();
         }
@@ -42,6 +43,7 @@ namespace Goudkoorts.Controller
 
         public void HandleTimervalTimer(object source, ElapsedEventArgs e)
         {
+            _blockSwitchMovement = true;
             try
             {
                 Game.MoveCarts();
@@ -70,7 +72,7 @@ namespace Goudkoorts.Controller
             {
                 _timer.Interval *= 0.98;
             }
-
+            _blockSwitchMovement = false;
         }
 
         public void PlayGame()
@@ -84,8 +86,6 @@ namespace Goudkoorts.Controller
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
                 _gameView.Render();
-
-                Game.MoveCarts();
             }
             _timer.Enabled = false;
         }
@@ -99,6 +99,10 @@ namespace Goudkoorts.Controller
 
         public void HandleKeyPress(string key)
         {
+            if (_blockSwitchMovement)
+            {
+                return;
+            }
             key = key.ToLower();
             List<TrackSwitch> trackSwitches = Game.TrackSwitches;
             trackSwitches = trackSwitches.Where(ts => ts.ListenToCharacter.ToLower().Equals(key)).ToList();
