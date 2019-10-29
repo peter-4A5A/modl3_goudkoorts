@@ -14,6 +14,7 @@ namespace Goudkoorts.Controller
         private Timer _timer;
         private GameView _gameView;
         private bool _blockSwitchMovement;
+        private Random _random;
         public Game Game { get; set; }
 
         public GoudkoortsController()
@@ -21,6 +22,7 @@ namespace Goudkoorts.Controller
             _blockSwitchMovement = false;
             Game = new Game();
             Game.SetupMap();
+            _random = new Random();
         }
 
         public void Start()
@@ -32,7 +34,7 @@ namespace Goudkoorts.Controller
             _timer.Interval = 2000;
 
             // Hook up the Elapsed event for the timer.
-            //_timer.Elapsed += HandleTimervalTimer;
+            _timer.Elapsed += HandleTimervalTimer;
 
             // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;
@@ -56,14 +58,14 @@ namespace Goudkoorts.Controller
                 return;
             }
 
-            Random random = new Random();
-            int randomInt = random.Next(1, 5);
-            if (randomInt == 3)
+            
+            int randomInt = _random.Next(1, 5);
+            if (randomInt == 2)
             {
                 // Need to spawn a cart
                 Game.SpawnCart();
             }
-            if(randomInt == 5)
+            if(randomInt == 3)
             {
                 Game.SpawnShip();
             }
@@ -85,6 +87,7 @@ namespace Goudkoorts.Controller
             {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
+                HandleTimervalTimer(null, null);
                 _gameView.Render();
             }
             _timer.Enabled = false;
