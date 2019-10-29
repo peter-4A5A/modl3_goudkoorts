@@ -9,7 +9,7 @@ namespace Goudkoorts.Model
 {
     public class Game
     {
-        public int Score { get; private set; }
+        public int Score { get; set; }
         public List<List<Track>> Map;
 
         public List<TrackSwitch> TrackSwitches { get; set; }
@@ -75,21 +75,9 @@ namespace Goudkoorts.Model
             foreach (Cart item in Carts)
             {
                 item.Move();
-                if (item.Track.IsTrackEnd)
+                if (item.Track == TrackEnd)
                 {
                     removingCart = item.Track.Cart;
-                }
-                if (item.Track.IsDock)
-                {
-                    if(TrackDock.Ship != null)
-                    {
-                        if(TrackDock.Ship.NumberOfDumps == 8)
-                        {
-                            Score += 10;
-                            TrackDock.Ship = null;
-                        }
-                        Score++;
-                    }
                 }
             }
 
@@ -275,7 +263,7 @@ namespace Goudkoorts.Model
             Track kSixth = new Track();
             kFith.NextTrack = kSixth;
             kSixth.PreviousTrack = kFith;
-            TrackDock = new TrackDock();
+            TrackDock = new TrackDock(this);
             kSixth.NextTrack = TrackDock;
             TrackDock.PreviousTrack = kSixth;
             Track EightTrack = new Track();

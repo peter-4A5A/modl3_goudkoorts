@@ -63,23 +63,6 @@ namespace Goudkoorts.Model
             {
                 return;
             }
-            if (nextTrack.IsYard)
-            {
-                TrackYard trackYard = (TrackYard)nextTrack;
-                if (!trackYard.CanEnterField(Track))
-                {
-                    return;
-                }
-            }
-            if (nextTrack.IsDock)
-            {
-                TrackDock dock = (TrackDock) nextTrack;
-                if(dock.Ship != null)
-                {
-                    IsFull = false;
-                    dock.Ship.NumberOfDumps++;
-                }
-            }
             else if (!nextTrack.CanEnterField(Track))
             {
                 return;

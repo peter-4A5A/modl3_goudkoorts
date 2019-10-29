@@ -32,7 +32,7 @@ namespace Goudkoorts.Controller
             _timer.Interval = 2000;
 
             // Hook up the Elapsed event for the timer.
-            _timer.Elapsed += HandleTimervalTimer;
+            //_timer.Elapsed += HandleTimervalTimer;
 
             // Have the timer fire repeated events (true is the default)
             _timer.AutoReset = true;

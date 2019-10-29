@@ -9,12 +9,45 @@ namespace Goudkoorts.Model
     public class TrackDock : Track
     {
         public Ship Ship { get; set; }
+        private Cart _cart;
+        public override Cart Cart {
+            get {
+                return _cart;
+            }
+            set {
+                if (value == null)
+                {
+                    Carts.Remove(_cart);
+                    _cart = value;
+                }
+                else
+                {
+                    _cart = value;
+                    if (!Carts.Contains(_cart))
+                    {
+                        Carts.Add(_cart);
+                    }
+                }
+                if (_cart != null)
+                {
+                    addCargoToShip();
+                    FieldCharacter = _cart.CartCharacter;
+                    
+                }
+                else
+                {
+                    FieldCharacter = DefaultFieldCharacter;
+                }
+                CheckForShip();
+            }
+        }
         public override string FieldCharacter { get; set; }
-        public TrackDock()
+        private Game _game;
+        public TrackDock(Game game)
         {
             FieldCharacter = "k";
             DefaultFieldCharacter = FieldCharacter;
-            IsDock = true;
+            _game = game;
         }
 
         public void SpawnShip()
@@ -47,8 +80,22 @@ namespace Goudkoorts.Model
                 DefaultFieldCharacter = "K";
                 FieldCharacter = "K";
             }
-            
-            
+        }
+
+        private void addCargoToShip()
+        {
+            if (Ship == null)
+            {
+                return;
+            }
+            Cart.IsFull = false;
+            Ship.NumberOfDumps++;
+            if (Ship.NumberOfDumps == 8)
+            {
+                _game.Score += 10;
+                Ship = null;
+            }
+            _game.Score++;
         }
     }
 }
