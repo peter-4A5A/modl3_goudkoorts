@@ -13,7 +13,7 @@ namespace Goudkoorts.Model
         public virtual string DefaultFieldCharacter { get; set; }
         public virtual Track NextTrack { get; set; }
         private Cart _cart;
-        public Cart Cart {
+        public virtual Cart Cart {
             get {
                 return _cart;
             }
@@ -72,10 +72,6 @@ namespace Goudkoorts.Model
 
         public int Id { get; set; }
         public bool IsSwitch { get; set; }
-        public bool IsYard { get; set; }
-        public bool IsTrackEnd { get; set; }
-
-        public bool IsDock { get; set; }
 
         public Track()
         {
@@ -84,9 +80,6 @@ namespace Goudkoorts.Model
             DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
             IsSwitch = false;
-            IsYard = false;
-            IsTrackEnd = false;
-            IsDock = false;
         }
 
         public virtual bool CanEnterField(Track currentTrack)

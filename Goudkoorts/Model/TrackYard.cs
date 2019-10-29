@@ -8,13 +8,10 @@ namespace Goudkoorts.Model
 {
     public class TrackYard : Track
     {
-        public Ship Ship { get; set; }
-
         public TrackYard()
         {
             FieldCharacter = "_";
             DefaultFieldCharacter = FieldCharacter;
-            IsYard = true;
         }
 
         public override bool CanEnterField(Track currentTrack)

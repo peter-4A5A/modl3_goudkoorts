@@ -14,7 +14,6 @@ namespace Goudkoorts.Model
         {
             FieldCharacter = "x";
             DefaultFieldCharacter = FieldCharacter;
-            IsTrackEnd = true;
         }
 
         public override bool CanEnterField(Track currentTrack)
