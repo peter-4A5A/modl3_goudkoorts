@@ -189,14 +189,14 @@ namespace Goudkoorts.Model
             abcSwitch.LeftTrack = trackBetweenSwitches;
 
             Track cbOne = new Track();
-            cbOne.PreviousTrack = cSwitch;
             cSwitch.UpTrack = cbOne;
 
             Track cbTwo = new Track();
             cbTwo.IsHorizontal = false;
-            cbOne.NextTrack = cbTwo;
-            cbTwo.PreviousTrack = cbOne;
-            cbTwo.NextTrack = abcSwitch;
+            cbOne.NextTrack = cSwitch;
+            cbOne.PreviousTrack = cbTwo;
+            cbTwo.PreviousTrack = abcSwitch;
+            cbTwo.NextTrack = cbOne;
             abcSwitch.DownTrack = cbTwo;
 
             // Track between cSwitch and cRange

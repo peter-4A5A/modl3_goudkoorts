@@ -10,7 +10,6 @@ namespace Goudkoorts.Model
     {
         public bool IsFull { get; set; }
         private Track _track;
-        public bool DrivesInverted { get; set; }
 
         private string _cartCharacter;
 
@@ -45,19 +44,11 @@ namespace Goudkoorts.Model
 
         public Cart()
         {
-            DrivesInverted = false;
             IsFull = true;
         }
 
         public void Move()
         {
-            bool nextInverted = AreWeGoingInverted();
-            TrackSwitch trackSwitch = null;
-            if (Track.IsSwitch)
-            {
-                trackSwitch = (TrackSwitch)Track;
-                DrivesInverted = trackSwitch.IsInverted;
-            }
             Track nextTrack = Track.NextTrack;
             if (nextTrack == null)
             {
@@ -68,46 +59,10 @@ namespace Goudkoorts.Model
                 return;
             }
 
-            if (!DrivesInverted || DrivesInverted && Track.IsSwitch)
-            {
-                // Just go to the next Field
-                Track.Cart = null;
-                Track = nextTrack;
-                Track.Cart = this;
-            }
-            else if (DrivesInverted)
-            {
-                Track prevTrack = Track.PreviousTrack;
-                Track.Cart = null;
-                Track = prevTrack;
-                Track.Cart = this;
-            }
-            DrivesInverted = nextInverted;
-        }
-        private bool AreWeGoingInverted()
-        {
-            if (Track.PreviousTrack == null)
-            {
-                return DrivesInverted;
-            }
-            Track nextTrack = Track.NextTrack;
-            if (Track.IsSwitch)
-            {
-                if (Track == nextTrack.NextTrack)
-                {
-                    // We are going inverted	
-                    return true;
-                }
-                else if (Track == nextTrack.PreviousTrack && !Track.IsSwitch && !nextTrack.IsSwitch)
-                {
-                    return false;
-                }
-                else if (Track.IsSwitch && DrivesInverted)
-                {
-                    return false;
-                }
-            }
-            return DrivesInverted;
+            // Just go to the next Field
+            Track.Cart = null;
+            Track = nextTrack;
+            Track.Cart = this;
         }
     }
 }
