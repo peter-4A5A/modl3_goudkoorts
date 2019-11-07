@@ -87,7 +87,6 @@ namespace Goudkoorts.Controller
             {
                 char key = Console.ReadKey().KeyChar;
                 HandleKeyPress(key.ToString());
-                HandleTimervalTimer(null, null);
                 _gameView.Render();
             }
             _timer.Enabled = false;
