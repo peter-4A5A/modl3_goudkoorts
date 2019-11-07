@@ -71,15 +71,12 @@ namespace Goudkoorts.Model
         }
 
         public int Id { get; set; }
-        public bool IsSwitch { get; set; }
-
         public Track()
         {
             Carts = new List<Cart>();
             FieldCharacter = "-";
             DefaultFieldCharacter = FieldCharacter;
             IsHorizontal = true;
-            IsSwitch = false;
         }
 
         public virtual bool CanEnterField(Track currentTrack)

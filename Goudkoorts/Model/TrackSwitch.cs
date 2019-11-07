@@ -35,7 +35,6 @@ namespace Goudkoorts.Model
             //└ ┘
             ListenToCharacter = character;
             FieldCharacter = "S";
-            IsSwitch = true;
         }
 
         public override bool CanEnterField(Track currentTrack)
